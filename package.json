@@ -1,0 +1,19 @@
+{
+  "name": "astro-handbook",
+  "description": "Astro handbook project by Ziad Elnagar.",
+  "private": true,
+  "type": "module",
+  "author": "Ziad Elnagar",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZiadNagar/astro-handbook.git"
+  },
+  "homepage": "https://github.com/ZiadNagar/astro-handbook",
+  "bugs": {
+    "url": "https://github.com/ZiadNagar/astro-handbook/issues"
+  },
+  "scripts": {
+    "build": "node scripts/build-html.mjs",
+    "build:html": "node scripts/build-html.mjs"
+  }
+}
