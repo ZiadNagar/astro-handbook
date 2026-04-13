@@ -1,0 +1,89 @@
+<!-- ─── 05 PAGES ─── -->
+<section class="section" id="pages">
+    <div class="section-label">05 · Pages & Routing</div>
+    <h2>Pages & Routing</h2>
+    <p>Astro uses <strong>file-based routing</strong>. Any file in <code>src/pages/</code> with a supported
+        extension becomes a URL.</p>
+
+    <h3>Supported Page Formats</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>File</th>
+                <th>URL</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>src/pages/index.astro</code></td>
+                <td><code>/</code></td>
+                <td>Home page</td>
+            </tr>
+            <tr>
+                <td><code>src/pages/about.astro</code></td>
+                <td><code>/about</code></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>src/pages/blog/index.astro</code></td>
+                <td><code>/blog</code></td>
+                <td>Folder index</td>
+            </tr>
+            <tr>
+                <td><code>src/pages/blog/[slug].astro</code></td>
+                <td><code>/blog/anything</code></td>
+                <td>Dynamic route</td>
+            </tr>
+            <tr>
+                <td><code>src/pages/[...all].astro</code></td>
+                <td>Catch-all</td>
+                <td>Rest params</td>
+            </tr>
+            <tr>
+                <td><code>src/pages/rss.xml.js</code></td>
+                <td><code>/rss.xml</code></td>
+                <td>API / feed endpoint</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Dynamic Routes — getStaticPaths()</h3>
+    <p>For dynamic routes in static mode, you <strong>must</strong> export <code>getStaticPaths()</code> to tell
+        Astro which URLs to generate.</p>
+    <pre><code><span class="file-label">src/pages/blog/[slug].astro</span>
+<span class="cmt">---</span>
+<span class="kw">export async function</span> <span class="fn">getStaticPaths</span>() {
+  <span class="cmt">// return every possible [slug] value</span>
+  <span class="kw">return</span> [
+    { <span class="attr">params</span>: { <span class="attr">slug</span>: <span class="str">'first-post'</span> }, <span class="attr">props</span>: { <span class="attr">title</span>: <span class="str">'First Post'</span> } },
+    { <span class="attr">params</span>: { <span class="attr">slug</span>: <span class="str">'second-post'</span> }, <span class="attr">props</span>: { <span class="attr">title</span>: <span class="str">'Second Post'</span> } },
+  ];
+}
+
+<span class="kw">const</span> { <span class="var">slug</span> } = <span class="var">Astro</span>.<span class="prop">params</span>;
+<span class="kw">const</span> { <span class="var">title</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="cmt">---</span>
+
+<span class="tag">&lt;h1&gt;</span>{<span class="var">title</span>}<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;p&gt;</span>Slug: {<span class="var">slug</span>}<span class="tag">&lt;/p&gt;</span></code></pre>
+
+    <h3>API Endpoints</h3>
+    <p>Files ending in <code>.js</code> or <code>.ts</code> in <code>pages/</code> become API endpoints (JSON,
+        XML, RSS feeds).</p>
+    <pre><code><span class="file-label">src/pages/api/hello.json.ts</span>
+<span class="kw">import type</span> { <span class="type">APIRoute</span> } <span class="kw">from</span> <span class="str">'astro'</span>;
+
+<span class="kw">export const</span> <span class="var">GET</span>: <span class="type">APIRoute</span> = ({ <span class="var">params</span>, <span class="var">request</span> }) => {
+  <span class="kw">return new</span> <span class="fn">Response</span>(
+    <span class="var">JSON</span>.<span class="fn">stringify</span>({ <span class="attr">message</span>: <span class="str">'Hello, World!'</span> }),
+    { <span class="attr">headers</span>: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> } }
+  );
+};</code></pre>
+
+    <div class="callout tip">
+        <div class="callout-head">💡 Tip</div>
+        You can also export <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, <code>PATCH</code> from
+        the same endpoint file.
+    </div>
+</section>

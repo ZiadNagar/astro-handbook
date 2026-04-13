@@ -1,0 +1,77 @@
+<!-- ─── 10 COLLECTIONS ─── -->
+<section class="section" id="collections">
+  <div class="section-label">10 · Content Collections</div>
+  <h2>Content Collections <span class="badge v5">v2+</span></h2>
+  <p>Content Collections give you a <strong>type-safe, schema-validated</strong> way to manage local content —
+    markdown, MDX, YAML, JSON. Think of it as a local database for your content.</p>
+
+  <h3>1. Define Your Schema</h3>
+  <pre><code><span class="file-label">src/content/config.ts</span>
+<span class="kw">import</span> { <span class="var">z</span>, <span class="var">defineCollection</span> } <span class="kw">from</span> <span class="str">'astro:content'</span>;
+
+<span class="kw">const</span> <span class="var">blogCollection</span> = <span class="fn">defineCollection</span>({
+  <span class="attr">type</span>: <span class="str">'content'</span>,    <span class="cmt">// 'content' for md/mdx, 'data' for json/yaml</span>
+  <span class="attr">schema</span>: <span class="var">z</span>.<span class="fn">object</span>({
+    <span class="attr">title</span>: <span class="var">z</span>.<span class="fn">string</span>(),
+    <span class="attr">pubDate</span>: <span class="var">z</span>.<span class="fn">date</span>(),
+    <span class="attr">author</span>: <span class="var">z</span>.<span class="fn">string</span>().<span class="fn">default</span>(<span class="str">'Anonymous'</span>),
+    <span class="attr">tags</span>: <span class="var">z</span>.<span class="fn">array</span>(<span class="var">z</span>.<span class="fn">string</span>()).<span class="fn">default</span>([]),
+    <span class="attr">draft</span>: <span class="var">z</span>.<span class="fn">boolean</span>().<span class="fn">default</span>(<span class="kw">false</span>),
+    <span class="attr">cover</span>: <span class="var">z</span>.<span class="fn">string</span>().<span class="fn">optional</span>(),
+  }),
+});
+
+<span class="kw">export const</span> <span class="var">collections</span> = {
+  <span class="str">'blog'</span>: <span class="var">blogCollection</span>,
+};</code></pre>
+
+  <h3>2. Write Your Content</h3>
+  <pre><code><span class="file-label">src/content/blog/my-post.md</span>
+<span class="cmt">---</span>
+<span class="attr">title</span>: <span class="str">"My First Post"</span>
+<span class="attr">pubDate</span>: <span class="str">2024-01-15</span>
+<span class="attr">author</span>: <span class="str">"ZEZO"</span>
+<span class="attr">tags</span>: [<span class="str">"astro"</span>, <span class="str">"webdev"</span>]
+<span class="cmt">---</span>
+
+<span class="cmt"># Hello from Markdown</span>
+Content here...</code></pre>
+
+  <h3>3. Query the Collection</h3>
+  <pre><code><span class="file-label">src/pages/blog/index.astro</span>
+<span class="cmt">---</span>
+<span class="kw">import</span> { <span class="var">getCollection</span> } <span class="kw">from</span> <span class="str">'astro:content'</span>;
+
+<span class="cmt">// getCollection returns typed, validated entries</span>
+<span class="kw">const</span> <span class="var">allPosts</span> = <span class="kw">await</span> <span class="fn">getCollection</span>(<span class="str">'blog'</span>);
+
+<span class="cmt">// Filter out drafts</span>
+<span class="kw">const</span> <span class="var">published</span> = <span class="var">allPosts</span>.<span class="fn">filter</span>((<span class="var">post</span>) =&gt; !<span class="var">post</span>.<span class="prop">data</span>.<span class="prop">draft</span>);
+<span class="cmt">---</span>
+
+{<span class="var">published</span>.<span class="fn">map</span>((<span class="var">post</span>) =&gt; (
+  <span class="tag">&lt;article&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>={<span class="str">`/blog/</span>${<span class="var">post</span>.<span class="prop">slug</span>}<span class="str">`</span>}<span class="tag">&gt;</span>{<span class="var">post</span>.<span class="prop">data</span>.<span class="prop">title</span>}<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;/article&gt;</span>
+))}</code></pre>
+
+  <h3>4. Render a Single Entry</h3>
+  <pre><code><span class="file-label">src/pages/blog/[slug].astro</span>
+<span class="cmt">---</span>
+<span class="kw">import</span> { <span class="var">getCollection</span>, <span class="var">getEntry</span> } <span class="kw">from</span> <span class="str">'astro:content'</span>;
+
+<span class="kw">export async function</span> <span class="fn">getStaticPaths</span>() {
+  <span class="kw">const</span> <span class="var">posts</span> = <span class="kw">await</span> <span class="fn">getCollection</span>(<span class="str">'blog'</span>);
+  <span class="kw">return</span> <span class="var">posts</span>.<span class="fn">map</span>((<span class="var">post</span>) =&gt; ({
+    <span class="attr">params</span>: { <span class="attr">slug</span>: <span class="var">post</span>.<span class="prop">slug</span> },
+    <span class="attr">props</span>: { <span class="var">post</span> },
+  }));
+}
+
+<span class="kw">const</span> { <span class="var">post</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="kw">const</span> { <span class="type">Content</span> } = <span class="kw">await</span> <span class="var">post</span>.<span class="fn">render</span>();  <span class="cmt">// renders markdown to component</span>
+<span class="cmt">---</span>
+
+<span class="tag">&lt;h1&gt;</span>{<span class="var">post</span>.<span class="prop">data</span>.<span class="prop">title</span>}<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;Content /&gt;</span>   <span class="cmt">&lt;!-- renders markdown body --&gt;</span></code></pre>
+</section>

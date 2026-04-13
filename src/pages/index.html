@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{ include:components/layout/head.html }}
+
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false">
+        Contents
+    </button>
+    <button id="nav-backdrop" class="nav-backdrop" type="button" hidden aria-hidden="true" tabindex="-1"></button>
+
+    {{ include:components/layout/sidebar.html }}
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+
+        {{ include:components/sections/intro.html }}
+
+        {{ include:components/sections/install.html }}
+
+        {{ include:components/sections/structure.html }}
+
+        {{ include:components/sections/components.html }}
+
+        {{ include:components/sections/pages.html }}
+
+        {{ include:components/sections/layouts.html }}
+
+        {{ include:components/sections/islands.html }}
+
+        {{ include:components/sections/props.html }}
+
+        {{ include:components/sections/fetch.html }}
+
+        {{ include:components/sections/collections.html }}
+
+        {{ include:components/sections/styling.html }}
+
+        {{ include:components/sections/assets.html }}
+
+        {{ include:components/sections/integrations.html }}
+
+        {{ include:components/sections/ssr.html }}
+
+        {{ include:components/sections/middleware.html }}
+
+        {{ include:components/sections/actions.html }}
+
+        {{ include:components/sections/viewtransitions.html }}
+
+        {{ include:components/sections/env.html }}
+
+        {{ include:components/sections/deploy.html }}
+
+    </main>
+
+    <script src="assets/js/main.js" defer></script>
+</body>
+
+</html>

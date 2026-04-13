@@ -1,0 +1,43 @@
+<!-- ─── 15 MIDDLEWARE ─── -->
+<section class="section" id="middleware">
+  <div class="section-label">15 · Middleware</div>
+  <h2>Middleware</h2>
+  <p>Middleware runs on every request <em>before</em> the page renders. Perfect for auth checks, setting
+    locals, logging, A/B testing.</p>
+
+  <pre><code><span class="file-label">src/middleware.ts</span>
+<span class="kw">import</span> { <span class="fn">defineMiddleware</span> } <span class="kw">from</span> <span class="str">'astro:middleware'</span>;
+
+<span class="kw">export const</span> <span class="var">onRequest</span> = <span class="fn">defineMiddleware</span>(
+  <span class="kw">async</span> ({ <span class="var">request</span>, <span class="var">locals</span>, <span class="var">cookies</span>, <span class="var">redirect</span> }, <span class="var">next</span>) => {
+
+  <span class="cmt">// Set data on locals — accessible in all pages/components</span>
+  <span class="var">locals</span>.<span class="prop">user</span> = <span class="kw">await</span> <span class="fn">getUserFromCookie</span>(<span class="var">cookies</span>);
+
+  <span class="cmt">// Guard protected routes</span>
+  <span class="kw">const</span> <span class="var">isProtected</span> = <span class="var">request</span>.<span class="prop">url</span>.<span class="fn">includes</span>(<span class="str">'/dashboard'</span>);
+  <span class="kw">if</span> (<span class="var">isProtected</span> && !<span class="var">locals</span>.<span class="prop">user</span>) {
+    <span class="kw">return</span> <span class="fn">redirect</span>(<span class="str">'/login'</span>);
+  }
+
+  <span class="cmt">// Continue to the page</span>
+  <span class="kw">return</span> <span class="fn">next</span>();
+});</code></pre>
+
+  <h3>Accessing Locals in Pages</h3>
+  <pre><code><span class="cmt">---</span>
+<span class="cmt">// Locals is typed — declare types in env.d.ts</span>
+<span class="kw">const</span> { <span class="var">user</span> } = <span class="var">Astro</span>.<span class="prop">locals</span>;
+<span class="cmt">---</span>
+<span class="tag">&lt;p&gt;</span>Welcome, {<span class="var">user</span>.<span class="prop">name</span>}!<span class="tag">&lt;/p&gt;</span></code></pre>
+
+  <h3>Type Your Locals</h3>
+  <pre><code><span class="file-label">src/env.d.ts</span>
+<span class="cmt">/// &lt;reference types="astro/client" /&gt;</span>
+
+<span class="kw">declare namespace</span> <span class="type">App</span> {
+  <span class="kw">interface</span> <span class="type">Locals</span> {
+    <span class="var">user</span>: { <span class="var">id</span>: <span class="type">string</span>; <span class="var">name</span>: <span class="type">string</span> } | <span class="kw">null</span>;
+  }
+}</code></pre>
+</section>

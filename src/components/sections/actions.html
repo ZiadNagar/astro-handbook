@@ -1,0 +1,40 @@
+<!-- ─── 16 ACTIONS ─── -->
+<section class="section" id="actions">
+  <div class="section-label">16 · Actions</div>
+  <h2>Actions <span class="badge new">v4.15+</span></h2>
+  <p>Actions are type-safe server functions you can call from the client — like tRPC but built into Astro.
+    Great for form submissions, mutations, anything that needs a server round-trip.</p>
+
+  <h3>Defining Actions</h3>
+  <pre><code><span class="file-label">src/actions/index.ts</span>
+<span class="kw">import</span> { <span class="fn">defineAction</span>, <span class="var">z</span> } <span class="kw">from</span> <span class="str">'astro:actions'</span>;
+
+<span class="kw">export const</span> <span class="var">server</span> = {
+  <span class="attr">newsletter</span>: <span class="fn">defineAction</span>({
+    <span class="attr">accept</span>: <span class="str">'form'</span>,  <span class="cmt">// or 'json'</span>
+    <span class="attr">input</span>: <span class="var">z</span>.<span class="fn">object</span>({
+      <span class="attr">email</span>: <span class="var">z</span>.<span class="fn">string</span>().<span class="fn">email</span>(),
+    }),
+    <span class="attr">handler</span>: <span class="kw">async</span> ({ <span class="var">email</span> }) => {
+      <span class="kw">await</span> <span class="fn">subscribeToNewsletter</span>(<span class="var">email</span>);
+      <span class="kw">return</span> { <span class="attr">success</span>: <span class="kw">true</span> };
+    },
+  }),
+};</code></pre>
+
+  <h3>Calling Actions from Client</h3>
+  <pre><code><span class="cmt">// From a React component (island)</span>
+<span class="kw">import</span> { <span class="var">actions</span> } <span class="kw">from</span> <span class="str">'astro:actions'</span>;
+
+<span class="kw">const</span> <span class="fn">handleSubmit</span> = <span class="kw">async</span> (<span class="var">e</span>) => {
+  <span class="kw">const</span> { <span class="var">data</span>, <span class="var">error</span> } = <span class="kw">await</span> <span class="var">actions</span>.<span class="fn">newsletter</span>({ <span class="attr">email</span>: <span class="var">email</span> });
+  <span class="kw">if</span> (<span class="var">error</span>) <span class="kw">return</span> <span class="fn">setError</span>(<span class="var">error</span>.<span class="prop">message</span>);
+  <span class="fn">setSuccess</span>(<span class="kw">true</span>);
+};</code></pre>
+
+  <div class="callout tip">
+    <div class="callout-head">💡 Form Progressive Enhancement</div>
+    Actions support native HTML forms with zero JavaScript as a fallback. The form still works without JS,
+    and hydrates into a client-side experience when JS is available.
+  </div>
+</section>

@@ -1,0 +1,39 @@
+<!-- ─── 08 PROPS ─── -->
+<section class="section" id="props">
+  <div class="section-label">08 · Props & Slots</div>
+  <h2>Props & Slots</h2>
+
+  <h3>Defining & Typing Props</h3>
+  <pre><code><span class="cmt">---</span>
+<span class="kw">interface</span> <span class="type">Props</span> {
+  <span class="var">name</span>: <span class="type">string</span>;
+  <span class="var">age</span>?: <span class="type">number</span>;          <span class="cmt">// optional</span>
+  <span class="var">variant</span>: <span class="str">'primary'</span> | <span class="str">'secondary'</span>;
+}
+
+<span class="kw">const</span> { <span class="var">name</span>, <span class="var">age</span> = <span class="num">0</span>, <span class="var">variant</span> = <span class="str">'primary'</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="cmt">---</span>
+
+<span class="tag">&lt;div</span> <span class="attr">class</span>={<span class="str">`btn btn-</span>${<span class="var">variant</span>}<span class="str">`</span>}<span class="tag">&gt;</span>
+  {<span class="var">name</span>} - {<span class="var">age</span>}
+<span class="tag">&lt;/div&gt;</span></code></pre>
+
+  <h3>Astro.props vs Destructuring</h3>
+  <pre><code><span class="cmt">// Both are equivalent:</span>
+<span class="kw">const</span> { <span class="var">title</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;       <span class="cmt">// destructured</span>
+<span class="kw">const</span> <span class="var">title</span> = <span class="var">Astro</span>.<span class="prop">props</span>.<span class="prop">title</span>;   <span class="cmt">// direct access</span></code></pre>
+
+  <h3>Passing All HTML Attributes</h3>
+  <pre><code><span class="cmt">---</span>
+<span class="kw">const</span> { <span class="var">class</span>: <span class="var">className</span>, ...<span class="var">rest</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="cmt">---</span>
+<span class="tag">&lt;button</span> {<span class="op">...</span><span class="var">rest</span>} <span class="attr">class</span>={<span class="str">`base-btn </span>${<span class="var">className</span>}<span class="str">`</span>}<span class="tag">&gt;</span>
+  <span class="tag">&lt;slot /&gt;</span>
+<span class="tag">&lt;/button&gt;</span></code></pre>
+
+  <h3>Slot Fallback Content</h3>
+  <pre><code><span class="tag">&lt;slot&gt;</span>
+  <span class="cmt">&lt;!-- This renders if no slot content is provided --&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Default content here<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/slot&gt;</span></code></pre>
+</section>

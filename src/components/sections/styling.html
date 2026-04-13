@@ -1,0 +1,79 @@
+<!-- ─── 11 STYLING ─── -->
+<section class="section" id="styling">
+    <div class="section-label">11 · Styling</div>
+    <h2>Styling</h2>
+
+    <div class="tabs">
+        <div class="tab-nav" role="tablist" aria-label="Styling topics">
+            <button id="tab-btn-scoped" class="tab-btn active" data-tab="scoped" role="tab" aria-selected="true"
+                aria-controls="tab-scoped">Scoped CSS</button>
+            <button id="tab-btn-global" class="tab-btn" data-tab="global" role="tab" aria-selected="false"
+                aria-controls="tab-global" tabindex="-1">Global CSS</button>
+            <button id="tab-btn-tailwind" class="tab-btn" data-tab="tailwind" role="tab" aria-selected="false"
+                aria-controls="tab-tailwind" tabindex="-1">Tailwind</button>
+            <button id="tab-btn-css-modules" class="tab-btn" data-tab="css-modules" role="tab" aria-selected="false"
+                aria-controls="tab-css-modules" tabindex="-1">CSS Modules</button>
+        </div>
+
+        <div id="tab-scoped" class="tab-content active" role="tabpanel" aria-labelledby="tab-btn-scoped">
+            <p class="tab-note">Scoped styles are the default in <code>.astro</code> files. They only
+                apply to elements in that component.</p>
+            <pre><code><span class="tag">&lt;h1&gt;</span>Only this h1 gets styled<span class="tag">&lt;/h1&gt;</span>
+
+<span class="tag">&lt;style&gt;</span>
+  <span class="cmt">/* Automatically scoped — won't leak */</span>
+  <span class="fn">h1</span> {
+    <span class="attr">color</span>: <span class="num">red</span>;
+    <span class="attr">font-size</span>: <span class="num">2rem</span>;
+  }
+<span class="tag">&lt;/style&gt;</span></code></pre>
+        </div>
+
+        <div id="tab-global" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-global" hidden>
+            <p class="tab-note">Use <code>is:global</code> or a separate CSS file imported in your layout
+                for truly global styles.</p>
+            <pre><code><span class="cmt">&lt;!-- Option 1: is:global modifier --&gt;</span>
+<span class="tag">&lt;style</span> <span class="attr">is:global</span><span class="tag">&gt;</span>
+  <span class="fn">body</span> { <span class="attr">margin</span>: <span class="num">0</span>; <span class="attr">font-family</span>: sans-serif; }
+<span class="tag">&lt;/style&gt;</span>
+
+<span class="cmt">&lt;!-- Option 2: Import CSS file --&gt;</span>
+<span class="cmt">---</span>
+<span class="kw">import</span> <span class="str">'../styles/global.css'</span>;
+<span class="cmt">---</span></code></pre>
+        </div>
+
+        <div id="tab-tailwind" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-tailwind" hidden>
+            <p class="tab-note">Install Tailwind with one command. Astro's integration auto-configures
+                everything.</p>
+            <pre><code><span class="fn">npx</span> astro add tailwind
+
+<span class="cmt"># Then just use classes in your templates:</span></code></pre>
+            <pre><code><span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded"</span><span class="tag">&gt;</span>
+  Click Me
+<span class="tag">&lt;/button&gt;</span></code></pre>
+        </div>
+
+        <div id="tab-css-modules" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-css-modules" hidden>
+            <p class="tab-note">CSS Modules work via Vite, producing locally-scoped class names.</p>
+            <pre><code><span class="file-label">src/components/Button.module.css</span>
+<span class="fn">.button</span> { <span class="attr">background</span>: <span class="num">teal</span>; <span class="attr">padding</span>: <span class="num">8px 16px</span>; }</code></pre>
+            <pre><code><span class="file-label">src/components/Button.astro</span>
+<span class="cmt">---</span>
+<span class="kw">import</span> <span class="var">styles</span> <span class="kw">from</span> <span class="str">'./Button.module.css'</span>;
+<span class="cmt">---</span>
+<span class="tag">&lt;button</span> <span class="attr">class</span>={<span class="var">styles</span>.<span class="prop">button</span>}<span class="tag">&gt;</span><span class="tag">&lt;slot /&gt;&lt;/button&gt;</span></code></pre>
+        </div>
+    </div>
+
+    <h3>Dynamic Class Names</h3>
+    <pre><code><span class="cmt">---</span>
+<span class="kw">const</span> { <span class="var">variant</span> = <span class="str">'default'</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="cmt">---</span>
+
+<span class="cmt">&lt;!-- Using template literals --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>={<span class="str">`card card-</span>${<span class="var">variant</span>}<span class="str">`</span>}<span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+
+<span class="cmt">&lt;!-- Using class:list directive (Astro built-in) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class:list</span>={[<span class="str">'card'</span>, { <span class="str">'card-active'</span>: <span class="var">isActive</span> }, <span class="var">variant</span>]}<span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></code></pre>
+</section>

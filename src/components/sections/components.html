@@ -1,0 +1,67 @@
+<!-- ─── 04 COMPONENTS ─── -->
+<section class="section" id="components">
+  <div class="section-label">04 · Components</div>
+  <h2>.astro Components</h2>
+  <p>The <code>.astro</code> file is Astro's own component format. It borrows JSX-like syntax but compiles to
+    pure HTML — no runtime framework required.</p>
+
+  <h3>Anatomy of a .astro File</h3>
+  <p>Every <code>.astro</code> file is split into two parts by a triple-dash fence (<code>---</code>):</p>
+
+  <pre><code><span class="file-label">src/components/Card.astro</span>
+<span class="cmt">---</span>
+<span class="cmt">// 1. COMPONENT SCRIPT (runs only at build/request time — server-side)</span>
+<span class="cmt">// This is where you import, fetch, define props, run logic</span>
+
+<span class="kw">const</span> { <span class="var">title</span>, <span class="var">description</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="kw">const</span> <span class="var">date</span> = <span class="kw">new</span> <span class="fn">Date</span>().<span class="fn">toISOString</span>();
+<span class="cmt">---</span>
+
+<span class="cmt">&lt;!-- 2. COMPONENT TEMPLATE (JSX-like HTML) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h2&gt;</span>{<span class="var">title</span>}<span class="tag">&lt;/h2&gt;</span>
+  <span class="tag">&lt;p&gt;</span>{<span class="var">description</span>}<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;small&gt;</span>{<span class="var">date</span>}<span class="tag">&lt;/small&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cmt">&lt;!-- 3. OPTIONAL: scoped styles --&gt;</span>
+<span class="tag">&lt;style&gt;</span>
+  <span class="fn">.card</span> { <span class="attr">border</span>: <span class="num">1px</span> solid <span class="num">#ccc</span>; <span class="attr">padding</span>: <span class="num">1rem</span>; }
+<span class="tag">&lt;/style&gt;</span></code></pre>
+
+  <div class="callout info">
+    <div class="callout-head">⚡ Important</div>
+    The component script runs <strong>at build time</strong> (or per-request in SSR). It's <em>never</em> in
+    the browser. You can use <code>await</code>, call databases, read the file system — anything Node.js can
+    do.
+  </div>
+
+  <h3>Expressions in Templates</h3>
+  <pre><code><span class="cmt">---</span>
+<span class="kw">const</span> <span class="var">items</span> = [<span class="str">'Apple'</span>, <span class="str">'Banana'</span>, <span class="str">'Cherry'</span>];
+<span class="kw">const</span> <span class="var">isVisible</span> = <span class="kw">true</span>;
+<span class="cmt">---</span>
+
+<span class="cmt">&lt;!-- Rendering a list --&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+  {<span class="var">items</span>.<span class="fn">map</span>((<span class="var">item</span>) =&gt; (
+    <span class="tag">&lt;li&gt;</span>{<span class="var">item</span>}<span class="tag">&lt;/li&gt;</span>
+  ))}
+<span class="tag">&lt;/ul&gt;</span>
+
+<span class="cmt">&lt;!-- Conditional rendering --&gt;</span>
+{<span class="var">isVisible</span> &amp;&amp; <span class="tag">&lt;p&gt;</span>I am visible<span class="tag">&lt;/p&gt;</span>}
+{<span class="var">isVisible</span> ? <span class="tag">&lt;p&gt;</span>Yes<span class="tag">&lt;/p&gt;</span> : <span class="tag">&lt;p&gt;</span>No<span class="tag">&lt;/p&gt;</span>}
+
+<span class="cmt">&lt;!-- Set raw HTML (use carefully!) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">set:html</span>={<span class="var">rawHtmlString</span>} <span class="tag">/&gt;</span></code></pre>
+
+  <h3>Importing & Using Components</h3>
+  <pre><code><span class="cmt">---</span>
+<span class="kw">import</span> <span class="type">Card</span> <span class="kw">from</span> <span class="str">'../components/Card.astro'</span>;
+<span class="kw">import</span> <span class="type">Button</span> <span class="kw">from</span> <span class="str">'../components/Button.astro'</span>;
+<span class="cmt">---</span>
+
+<span class="tag">&lt;Card</span> <span class="attr">title</span>=<span class="str">"Hello"</span> <span class="attr">description</span>=<span class="str">"World"</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;Button</span> <span class="attr">variant</span>=<span class="str">"primary"</span><span class="tag">&gt;</span>Click me<span class="tag">&lt;/Button&gt;</span></code></pre>
+</section>

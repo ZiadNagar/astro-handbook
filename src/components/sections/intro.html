@@ -1,0 +1,83 @@
+<!-- ─── 01 INTRO ─── -->
+<section class="hero-section" id="intro">
+    <div class="section-label">01 · Introduction</div>
+    <h1>The Astro<br>Handbook</h1>
+    <p class="hero-lead">Everything you need to go from <em>zero to ship</em> with Astro
+        — the web framework built for content-heavy, fast websites. No fluff. Just concepts, code, and clarity.
+    </p>
+
+    <div class="pill-list">
+        <span class="pill active">Islands Architecture</span>
+        <span class="pill active">Zero JS by Default</span>
+        <span class="pill active">Content Collections</span>
+        <span class="pill active">SSG + SSR</span>
+        <span class="pill active">Framework Agnostic</span>
+        <span class="pill">React / Vue / Svelte</span>
+        <span class="pill">Tailwind Ready</span>
+    </div>
+
+    <h3>What is Astro?</h3>
+    <p>Astro is a <strong>web framework focused on content-driven websites</strong> — blogs, documentation,
+        marketing pages, e-commerce. Its core philosophy: ship <strong>less JavaScript</strong> to the browser.
+        HTML is rendered at build time, and interactive components (called <em>Islands</em>) are hydrated
+        on-demand.</p>
+
+    <div class="grid-3">
+        <div class="card">
+            <div class="card-title"><span class="icon">⚡</span> Zero JS by Default</div>
+            <p>Every page ships as static HTML. JS only loads when you opt in via client directives.</p>
+        </div>
+        <div class="card">
+            <div class="card-title"><span class="icon">🏝️</span> Islands</div>
+            <p>Interactive UI components exist as isolated islands in an otherwise static sea.</p>
+        </div>
+        <div class="card">
+            <div class="card-title"><span class="icon">🔌</span> Bring Your UI</div>
+            <p>Use React, Vue, Svelte, Solid, Preact — or just plain HTML. All in one project.</p>
+        </div>
+    </div>
+
+    <h3>Astro vs Other Frameworks</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Framework</th>
+                <th>Default Output</th>
+                <th>Best For</th>
+                <th>Hydration</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Astro</strong></td>
+                <td>Static HTML</td>
+                <td>Content sites</td>
+                <td>Partial (Islands)</td>
+            </tr>
+            <tr>
+                <td>Next.js</td>
+                <td>SSR/SSG hybrid</td>
+                <td>React apps</td>
+                <td>Full page</td>
+            </tr>
+            <tr>
+                <td>Nuxt</td>
+                <td>SSR/SSG hybrid</td>
+                <td>Vue apps</td>
+                <td>Full page</td>
+            </tr>
+            <tr>
+                <td>SvelteKit</td>
+                <td>SSR + adapter</td>
+                <td>Svelte apps</td>
+                <td>Full page</td>
+            </tr>
+            <tr>
+                <td>Remix</td>
+                <td>SSR first</td>
+                <td>Web apps</td>
+                <td>Full page</td>
+            </tr>
+        </tbody>
+    </table>
+</section>

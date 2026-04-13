@@ -1,0 +1,71 @@
+<!-- ─── 13 INTEGRATIONS ─── -->
+<section class="section" id="integrations">
+    <div class="section-label">13 · Integrations</div>
+    <h2>Integrations</h2>
+    <p>Integrations extend Astro's capabilities — UI frameworks, styling, deployment adapters, analytics,
+        sitemaps, and more.</p>
+
+    <h3>Adding Integrations</h3>
+    <pre><code><span class="cmt"># Official integrations — auto-configures everything</span>
+<span class="fn">npx</span> astro add react       <span class="cmt"># React + React DOM</span>
+<span class="fn">npx</span> astro add vue         <span class="cmt"># Vue 3</span>
+<span class="fn">npx</span> astro add svelte      <span class="cmt"># Svelte</span>
+<span class="fn">npx</span> astro add solid-js    <span class="cmt"># Solid</span>
+<span class="fn">npx</span> astro add tailwind    <span class="cmt"># Tailwind CSS</span>
+<span class="fn">npx</span> astro add mdx         <span class="cmt"># MDX support</span>
+<span class="fn">npx</span> astro add sitemap     <span class="cmt"># Auto-generates sitemap.xml</span>
+<span class="fn">npx</span> astro add node        <span class="cmt"># Node.js adapter (SSR)</span>
+<span class="fn">npx</span> astro add vercel      <span class="cmt"># Vercel adapter (SSR)</span></code></pre>
+
+    <h3>Using Multiple UI Frameworks</h3>
+    <pre><code><span class="cmt">---</span>
+<span class="kw">import</span> <span class="type">ReactCounter</span> <span class="kw">from</span> <span class="str">'./ReactCounter.jsx'</span>;
+<span class="kw">import</span> <span class="type">VueSearch</span> <span class="kw">from</span> <span class="str">'./VueSearch.vue'</span>;
+<span class="kw">import</span> <span class="type">SvelteModal</span> <span class="kw">from</span> <span class="str">'./SvelteModal.svelte'</span>;
+<span class="cmt">---</span>
+
+<span class="cmt">&lt;!-- All work together on one page! --&gt;</span>
+<span class="tag">&lt;ReactCounter</span> <span class="attr">client:load</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;VueSearch</span> <span class="attr">client:idle</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;SvelteModal</span> <span class="attr">client:visible</span> <span class="tag">/&gt;</span></code></pre>
+
+    <h3>Official Integration Catalog</h3>
+    <div class="grid-3">
+        <div class="card">
+            <div class="card-title">⚛️ React</div>
+            <p><code>@astrojs/react</code></p>
+        </div>
+        <div class="card">
+            <div class="card-title">💚 Vue</div>
+            <p><code>@astrojs/vue</code></p>
+        </div>
+        <div class="card">
+            <div class="card-title">🔥 Svelte</div>
+            <p><code>@astrojs/svelte</code></p>
+        </div>
+        <div class="card">
+            <div class="card-title">💧 Solid</div>
+            <p><code>@astrojs/solid-js</code></p>
+        </div>
+        <div class="card">
+            <div class="card-title">🎨 Tailwind</div>
+            <p><code>@astrojs/tailwind</code></p>
+        </div>
+        <div class="card">
+            <div class="card-title">📝 MDX</div>
+            <p><code>@astrojs/mdx</code></p>
+        </div>
+        <div class="card">
+            <div class="card-title">🗺️ Sitemap</div>
+            <p><code>@astrojs/sitemap</code></p>
+        </div>
+        <div class="card">
+            <div class="card-title">🔍 Partytown</div>
+            <p><code>@astrojs/partytown</code></p>
+        </div>
+        <div class="card">
+            <div class="card-title">📦 Node</div>
+            <p><code>@astrojs/node</code></p>
+        </div>
+    </div>
+</section>

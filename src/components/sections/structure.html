@@ -1,0 +1,70 @@
+<!-- ─── 03 STRUCTURE ─── -->
+<section class="section" id="structure">
+    <div class="section-label">03 · Project Structure</div>
+    <h2>Project Structure</h2>
+    <p>Astro enforces a specific directory convention. Understanding it upfront saves confusion later.</p>
+
+    <figure class="diagram-card" aria-labelledby="structure-diagram-title">
+        <figcaption id="structure-diagram-title" class="diagram-title">Astro Project Topology</figcaption>
+        <div class="diagram-scroll">
+            <pre class="mermaid">flowchart TB
+  project["my-astro-project/"]
+  src["src/"]
+  public["public/"]
+  config["astro.config.mjs"]
+  tscfg["tsconfig.json"]
+  pkg["package.json"]
+
+  pages["pages/"]
+  components["components/"]
+  layouts["layouts/"]
+  content["content/"]
+  styles["styles/"]
+  assets["assets/"]
+
+  project --> src
+  project --> public
+  project --> config
+  project --> tscfg
+  project --> pkg
+
+  src --> pages
+  src --> components
+  src --> layouts
+  src --> content
+  src --> styles
+  src --> assets
+
+  classDef root fill:#20222b,stroke:#ff5d01,color:#f0f0f2,stroke-width:1.5px;
+  classDef folder fill:#1a1c23,stroke:#4f39fa,color:#f0f0f2,stroke-width:1px;
+  classDef file fill:#13151a,stroke:#2a2d3a,color:#a8b2c1,stroke-width:1px;
+
+  class project root;
+  class src,pages,components,layouts,content,styles,assets,public folder;
+  class config,tscfg,pkg file;</pre>
+        </div>
+    </figure>
+
+    <div class="callout info">
+        <div class="callout-head">🔑 Key Rule</div>
+        Only files inside <code>src/pages/</code> become routable URLs. Everything else in <code>src/</code> is
+        imported but never exposed directly.
+    </div>
+
+    <h3>astro.config.mjs</h3>
+    <p>This is the heart of your Astro project. All integrations, output mode, and base path live here.</p>
+    <pre><code><span class="file-label">astro.config.mjs</span>
+<span class="kw">import</span> { <span class="var">defineConfig</span> } <span class="kw">from</span> <span class="str">'astro/config'</span>;
+<span class="kw">import</span> <span class="var">react</span> <span class="kw">from</span> <span class="str">'@astrojs/react'</span>;
+<span class="kw">import</span> <span class="var">tailwind</span> <span class="kw">from</span> <span class="str">'@astrojs/tailwind'</span>;
+
+<span class="kw">export default</span> <span class="fn">defineConfig</span>({
+  <span class="attr">site</span>: <span class="str">'https://mysite.com'</span>,   <span class="cmt">// needed for sitemaps, canonical URLs</span>
+  <span class="attr">base</span>: <span class="str">'/'</span>,
+  <span class="attr">output</span>: <span class="str">'static'</span>,             <span class="cmt">// 'static' | 'server' | 'hybrid'</span>
+  <span class="attr">integrations</span>: [<span class="fn">react</span>(), <span class="fn">tailwind</span>()],
+  <span class="attr">vite</span>: {
+    <span class="cmt">// pass-through Vite config here</span>
+  }
+});</code></pre>
+</section>

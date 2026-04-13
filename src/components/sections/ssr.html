@@ -1,0 +1,76 @@
+<!-- ─── 14 SSR ─── -->
+<section class="section" id="ssr">
+    <div class="section-label">14 · SSR & Adapters</div>
+    <h2>SSR & Output Modes</h2>
+    <p>By default, Astro renders everything at build time (SSG). You can switch to server-side rendering
+        per-page or for the whole project.</p>
+
+    <h3>Three Output Modes</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Mode</th>
+                <th>Config</th>
+                <th>Behavior</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>static</strong></td>
+                <td><code>output: 'static'</code></td>
+                <td>All pages pre-rendered at build time (default)</td>
+            </tr>
+            <tr>
+                <td><strong>server</strong></td>
+                <td><code>output: 'server'</code></td>
+                <td>All pages rendered on each request</td>
+            </tr>
+            <tr>
+                <td><strong>hybrid</strong></td>
+                <td><code>output: 'hybrid'</code></td>
+                <td>Pages are static by default; opt pages into SSR</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Switching to SSR</h3>
+    <pre><code><span class="file-label">astro.config.mjs</span>
+<span class="kw">import</span> <span class="var">vercel</span> <span class="kw">from</span> <span class="str">'@astrojs/vercel/serverless'</span>;
+
+<span class="kw">export default</span> <span class="fn">defineConfig</span>({
+  <span class="attr">output</span>: <span class="str">'server'</span>,    <span class="cmt">// or 'hybrid'</span>
+  <span class="attr">adapter</span>: <span class="fn">vercel</span>(),  <span class="cmt">// deployment target adapter</span>
+});</code></pre>
+
+    <h3>Hybrid Mode — Opt-in SSR per Page</h3>
+    <pre><code><span class="file-label">src/pages/dashboard.astro</span>
+<span class="cmt">---</span>
+<span class="cmt">// In 'hybrid' mode, opt this page into SSR:</span>
+<span class="kw">export const</span> <span class="var">prerender</span> = <span class="kw">false</span>;  <span class="cmt">// SSR</span>
+<span class="cmt">// export const prerender = true;   // pre-render (default in hybrid)</span>
+
+<span class="cmt">// In 'server' mode, opt into static:</span>
+<span class="kw">export const</span> <span class="var">prerender</span> = <span class="kw">true</span>;
+<span class="cmt">---</span></code></pre>
+
+    <h3>Reading Request Data in SSR</h3>
+    <pre><code><span class="cmt">---</span>
+<span class="kw">export const</span> <span class="var">prerender</span> = <span class="kw">false</span>;
+
+<span class="kw">const</span> { <span class="var">request</span>, <span class="var">url</span>, <span class="var">cookies</span>, <span class="var">redirect</span> } = <span class="var">Astro</span>;
+
+<span class="cmt">// Read URL params</span>
+<span class="kw">const</span> <span class="var">id</span> = <span class="var">url</span>.<span class="fn">searchParams</span>.<span class="fn">get</span>(<span class="str">'id'</span>);
+
+<span class="cmt">// Read cookies</span>
+<span class="kw">const</span> <span class="var">token</span> = <span class="var">cookies</span>.<span class="fn">get</span>(<span class="str">'auth_token'</span>)?.<span class="prop">value</span>;
+
+<span class="cmt">// Redirect</span>
+<span class="kw">if</span> (!<span class="var">token</span>) <span class="kw">return</span> <span class="fn">redirect</span>(<span class="str">'/login'</span>);
+
+<span class="cmt">// Read POST body</span>
+<span class="kw">if</span> (<span class="var">request</span>.<span class="prop">method</span> === <span class="str">'POST'</span>) {
+  <span class="kw">const</span> <span class="var">body</span> = <span class="kw">await</span> <span class="var">request</span>.<span class="fn">json</span>();
+}
+<span class="cmt">---</span></code></pre>
+</section>

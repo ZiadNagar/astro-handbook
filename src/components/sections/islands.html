@@ -1,0 +1,100 @@
+<!-- ─── 07 ISLANDS ─── -->
+<section class="section" id="islands">
+    <div class="section-label">07 · Islands Architecture</div>
+    <h2>Islands Architecture</h2>
+    <p>This is Astro's <em>most important concept</em>. Most of your page ships as zero-JavaScript HTML. Only
+        the parts that need interactivity — <strong>Islands</strong> — load their framework and hydrate in the
+        browser.</p>
+
+    <figure class="diagram-card" aria-labelledby="islands-diagram-title">
+        <figcaption id="islands-diagram-title" class="diagram-title">Islands Rendering Model</figcaption>
+        <div class="diagram-scroll">
+            <pre class="mermaid">flowchart LR
+subgraph page["Your Page (static HTML — no JS)"]
+header["Header<br/>Static HTML"]
+article["Article Content<br/>Static HTML"]
+chart["Interactive Chart<br/>🏝️ React Island"]
+search["Search Widget<br/>🏝️ Vue Island"]
+end
+
+header --- chart
+article --- search
+
+classDef static fill:#1a1c23,stroke:#2a2d3a,color:#a8b2c1,stroke-width:1px;
+classDef island fill:#20222b,stroke:#ff5d01,color:#f0f0f2,stroke-width:1.5px;
+classDef shell fill:#13151a,stroke:#4f39fa,color:#f0f0f2,stroke-width:1px;
+
+class page shell;
+class header,article static;
+class chart,search island;</pre>
+        </div>
+    </figure>
+
+    <h3>Client Directives — How to Hydrate</h3>
+    <p>Add a <code>client:*</code> directive to any component to make it an Island. Without it, a React/Vue
+        component renders as static HTML only.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Directive</th>
+                <th>When JS Loads</th>
+                <th>Use Case</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>client:load</code></td>
+                <td>Immediately on page load</td>
+                <td>Visible, critical UI</td>
+            </tr>
+            <tr>
+                <td><code>client:idle</code></td>
+                <td>When browser is idle</td>
+                <td>Less critical, below fold</td>
+            </tr>
+            <tr>
+                <td><code>client:visible</code></td>
+                <td>When component enters viewport</td>
+                <td>Lazy-loaded, far down page</td>
+            </tr>
+            <tr>
+                <td><code>client:media="(query)"</code></td>
+                <td>When media query matches</td>
+                <td>Mobile-only nav, etc.</td>
+            </tr>
+            <tr>
+                <td><code>client:only="react"`</code></td>
+                <td>Browser only (no SSR)</td>
+                <td>Components using browser APIs</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <pre><code><span class="cmt">---</span>
+<span class="kw">import</span> <span class="type">Search</span> <span class="kw">from</span> <span class="str">'./Search.jsx'</span>;      <span class="cmt">// React component</span>
+<span class="kw">import</span> <span class="type">Counter</span> <span class="kw">from</span> <span class="str">'./Counter.svelte'</span>;  <span class="cmt">// Svelte component</span>
+<span class="kw">import</span> <span class="type">Chart</span> <span class="kw">from</span> <span class="str">'./Chart.vue'</span>;        <span class="cmt">// Vue component</span>
+<span class="cmt">---</span>
+
+<span class="cmt">&lt;!-- No directive = static HTML, no JS --&gt;</span>
+<span class="tag">&lt;Search /&gt;</span>
+
+<span class="cmt">&lt;!-- Hydrate immediately --&gt;</span>
+<span class="tag">&lt;Search</span> <span class="attr">client:load</span> <span class="tag">/&gt;</span>
+
+<span class="cmt">&lt;!-- Wait for idle --&gt;</span>
+<span class="tag">&lt;Counter</span> <span class="attr">client:idle</span> <span class="tag">/&gt;</span>
+
+<span class="cmt">&lt;!-- Only when in viewport --&gt;</span>
+<span class="tag">&lt;Chart</span> <span class="attr">client:visible</span> <span class="tag">/&gt;</span>
+
+<span class="cmt">&lt;!-- Mobile only --&gt;</span>
+<span class="tag">&lt;MobileNav</span> <span class="attr">client:media</span>=<span class="str">"(max-width: 768px)"</span> <span class="tag">/&gt;</span></code></pre>
+
+    <div class="callout warn">
+        <div class="callout-head">⚠️ Islands are Isolated</div>
+        Islands don't share state with each other by default. If you need shared state across islands, use a
+        framework-agnostic store like <strong>nanostores</strong> (officially recommended by Astro).
+    </div>
+</section>

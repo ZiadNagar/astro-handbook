@@ -1,0 +1,52 @@
+<!-- ─── 09 DATA FETCHING ─── -->
+<section class="section" id="fetch">
+  <div class="section-label">09 · Data Fetching</div>
+  <h2>Data Fetching</h2>
+  <p>Since the component script runs on the server (or at build time), you can use <code>await</code> freely —
+    no <code>useEffect</code>, no loading states needed for initial data.</p>
+
+  <h3>Fetching External APIs</h3>
+  <pre><code><span class="file-label">src/pages/posts.astro</span>
+<span class="cmt">---</span>
+<span class="cmt">// Top-level await works inside .astro files!</span>
+<span class="kw">const</span> <span class="var">response</span> = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">'https://api.example.com/posts'</span>);
+<span class="kw">const</span> <span class="var">posts</span> = <span class="kw">await</span> <span class="var">response</span>.<span class="fn">json</span>();
+<span class="cmt">---</span>
+
+<span class="tag">&lt;ul&gt;</span>
+  {<span class="var">posts</span>.<span class="fn">map</span>((<span class="var">post</span>) =&gt; (
+    <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>={<span class="var">post</span>.<span class="prop">url</span>}<span class="tag">&gt;</span>{<span class="var">post</span>.<span class="prop">title</span>}<span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+  ))}
+<span class="tag">&lt;/ul&gt;</span></code></pre>
+
+  <h3>Reading Local Files</h3>
+  <pre><code><span class="cmt">---</span>
+<span class="kw">import</span> <span class="var">fs</span> <span class="kw">from</span> <span class="str">'node:fs/promises'</span>;
+
+<span class="kw">const</span> <span class="var">data</span> = <span class="kw">await</span> <span class="var">fs</span>.<span class="fn">readFile</span>(<span class="str">'./data.json'</span>, <span class="str">'utf-8'</span>);
+<span class="kw">const</span> <span class="var">json</span> = <span class="var">JSON</span>.<span class="fn">parse</span>(<span class="var">data</span>);
+<span class="cmt">---</span></code></pre>
+
+  <h3>Astro.glob() — Import Multiple Files</h3>
+  <p><code>Astro.glob()</code> lets you import multiple files at once with a glob pattern — great for markdown
+    posts, JSON files, etc.</p>
+  <pre><code><span class="cmt">---</span>
+<span class="cmt">// Import all markdown files from a folder</span>
+<span class="kw">const</span> <span class="var">posts</span> = <span class="kw">await</span> <span class="var">Astro</span>.<span class="fn">glob</span>(<span class="str">'../content/blog/*.md'</span>);
+
+<span class="cmt">// Sort by date descending</span>
+<span class="var">posts</span>.<span class="fn">sort</span>((<span class="var">a</span>, <span class="var">b</span>) =>
+  <span class="kw">new</span> <span class="fn">Date</span>(<span class="var">b</span>.<span class="prop">frontmatter</span>.<span class="prop">pubDate</span>) - <span class="kw">new</span> <span class="fn">Date</span>(<span class="var">a</span>.<span class="prop">frontmatter</span>.<span class="prop">pubDate</span>)
+);
+<span class="cmt">---</span>
+
+{<span class="var">posts</span>.<span class="fn">map</span>((<span class="var">post</span>) =&gt; (
+  <span class="tag">&lt;a</span> <span class="attr">href</span>={<span class="var">post</span>.<span class="prop">url</span>}<span class="tag">&gt;</span>{<span class="var">post</span>.<span class="prop">frontmatter</span>.<span class="prop">title</span>}<span class="tag">&lt;/a&gt;</span>
+))}</code></pre>
+
+  <div class="callout info">
+    <div class="callout-head">ℹ️ Modern Alternative</div>
+    <code>Astro.glob()</code> still works but <strong>Content Collections</strong> (next section) are the
+    preferred, type-safe approach for managing content in Astro v2+.
+  </div>
+</section>

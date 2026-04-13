@@ -1,0 +1,65 @@
+<!-- ─── 17 VIEW TRANSITIONS ─── -->
+<section class="section" id="viewtransitions">
+    <div class="section-label">17 · View Transitions</div>
+    <h2>View Transitions</h2>
+    <p>Astro has first-class support for the <strong>View Transitions API</strong> — smooth, app-like page
+        transitions with minimal code.</p>
+
+    <h3>Enable Globally</h3>
+    <pre><code><span class="file-label">src/layouts/BaseLayout.astro</span>
+<span class="cmt">---</span>
+<span class="kw">import</span> { <span class="type">ViewTransitions</span> } <span class="kw">from</span> <span class="str">'astro:transitions'</span>;
+<span class="cmt">---</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;ViewTransitions /&gt;</span>   <span class="cmt">&lt;!-- That's all! --&gt;</span>
+<span class="tag">&lt;/head&gt;</span></code></pre>
+
+    <h3>Named Transitions</h3>
+    <pre><code><span class="cmt">&lt;!-- Page A --&gt;</span>
+<span class="tag">&lt;img</span>
+  <span class="attr">src</span>=<span class="str">"/hero.jpg"</span>
+  <span class="attr">transition:name</span>=<span class="str">"hero-image"</span>
+  <span class="attr">transition:animate</span>=<span class="str">"slide"</span>
+<span class="tag">/&gt;</span>
+
+<span class="cmt">&lt;!-- Page B — same name creates a morph transition --&gt;</span>
+<span class="tag">&lt;img</span>
+  <span class="attr">src</span>=<span class="str">"/hero.jpg"</span>
+  <span class="attr">transition:name</span>=<span class="str">"hero-image"</span>
+<span class="tag">/&gt;</span></code></pre>
+
+    <h3>Built-in Animations</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Directive</th>
+                <th>Effect</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>transition:animate="fade"</code></td>
+                <td>Fade in/out (default)</td>
+            </tr>
+            <tr>
+                <td><code>transition:animate="slide"</code></td>
+                <td>Slide left/right</td>
+            </tr>
+            <tr>
+                <td><code>transition:animate="none"</code></td>
+                <td>No animation</td>
+            </tr>
+            <tr>
+                <td><code>transition:animate={myAnimation}</code></td>
+                <td>Custom keyframe animation</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Persist Elements Across Pages</h3>
+    <pre><code><span class="cmt">&lt;!-- Media player stays alive during navigation --&gt;</span>
+<span class="tag">&lt;AudioPlayer</span> <span class="attr">transition:persist</span> <span class="tag">/&gt;</span>
+
+<span class="cmt">&lt;!-- Keep scroll position of sidebar --&gt;</span>
+<span class="tag">&lt;nav</span> <span class="attr">transition:persist</span>=<span class="str">"sidebar"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/nav&gt;</span></code></pre>
+</section>

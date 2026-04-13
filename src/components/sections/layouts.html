@@ -1,0 +1,72 @@
+<!-- ─── 06 LAYOUTS ─── -->
+<section class="section" id="layouts">
+  <div class="section-label">06 · Layouts</div>
+  <h2>Layouts</h2>
+  <p>Layouts are wrapper components that provide shared structure (header, footer, `&lt;head&gt;`) around page
+    content via <code>&lt;slot /&gt;</code>.</p>
+
+  <pre><code><span class="file-label">src/layouts/BaseLayout.astro</span>
+<span class="cmt">---</span>
+<span class="kw">interface</span> <span class="type">Props</span> {
+  <span class="var">title</span>: <span class="type">string</span>;
+  <span class="var">description</span>?: <span class="type">string</span>;
+}
+
+<span class="kw">const</span> { <span class="var">title</span>, <span class="var">description</span> = <span class="str">'My website'</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="cmt">---</span>
+
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="str">"en"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="str">"UTF-8"</span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="str">"viewport"</span> <span class="attr">content</span>=<span class="str">"width=device-width"</span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;title&gt;</span>{<span class="var">title</span>}<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="str">"description"</span> <span class="attr">content</span>={<span class="var">description</span>} <span class="tag">/&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;header&gt;</span><span class="tag">&lt;nav&gt;</span>...<span class="tag">&lt;/nav&gt;&lt;/header&gt;</span>
+
+  <span class="tag">&lt;main&gt;</span>
+    <span class="tag">&lt;slot /&gt;</span>   <span class="cmt">&lt;!-- page content renders here --&gt;</span>
+  <span class="tag">&lt;/main&gt;</span>
+
+  <span class="tag">&lt;footer&gt;</span>...<span class="tag">&lt;/footer&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+
+  <h3>Using a Layout in a Page</h3>
+  <pre><code><span class="file-label">src/pages/about.astro</span>
+<span class="cmt">---</span>
+<span class="kw">import</span> <span class="type">BaseLayout</span> <span class="kw">from</span> <span class="str">'../layouts/BaseLayout.astro'</span>;
+<span class="cmt">---</span>
+
+<span class="tag">&lt;BaseLayout</span> <span class="attr">title</span>=<span class="str">"About Me"</span> <span class="attr">description</span>=<span class="str">"Who I am"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>About Me<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>I build stuff on the web.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/BaseLayout&gt;</span></code></pre>
+
+  <h3>Named Slots</h3>
+  <p>Need multiple insertion points? Use named slots.</p>
+  <pre><code><span class="cmt">&lt;!-- In layout: --&gt;</span>
+<span class="tag">&lt;slot</span> <span class="attr">name</span>=<span class="str">"header"</span> <span class="tag">/&gt;</span>   <span class="cmt">&lt;!-- named slot --&gt;</span>
+<span class="tag">&lt;slot /&gt;</span>                 <span class="cmt">&lt;!-- default slot --&gt;</span>
+<span class="tag">&lt;slot</span> <span class="attr">name</span>=<span class="str">"footer"</span> <span class="tag">/&gt;</span>   <span class="cmt">&lt;!-- named slot --&gt;</span>
+
+<span class="cmt">&lt;!-- In page using the layout: --&gt;</span>
+<span class="tag">&lt;MyLayout&gt;</span>
+  <span class="tag">&lt;h1</span> <span class="attr">slot</span>=<span class="str">"header"</span><span class="tag">&gt;</span>Page Title<span class="tag">&lt;/h1&gt;</span>   <span class="cmt">&lt;!-- goes to header slot --&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Body content<span class="tag">&lt;/p&gt;</span>                 <span class="cmt">&lt;!-- goes to default slot --&gt;</span>
+<span class="tag">&lt;/MyLayout&gt;</span></code></pre>
+
+  <h3>Markdown Layouts</h3>
+  <p>Markdown/MDX files can declare their layout in frontmatter.</p>
+  <pre><code><span class="file-label">src/content/blog/my-post.md</span>
+<span class="cmt">---</span>
+<span class="attr">layout</span>: <span class="str">../../layouts/BlogPost.astro</span>
+<span class="attr">title</span>: <span class="str">My First Post</span>
+<span class="attr">pubDate</span>: <span class="str">2024-01-01</span>
+<span class="cmt">---</span>
+
+<span class="cmt"># Hello World</span>
+This is markdown content...</code></pre>
+</section>

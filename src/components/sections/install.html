@@ -1,0 +1,74 @@
+<!-- ─── 02 INSTALL ─── -->
+<section class="section" id="install">
+    <div class="section-label">02 · Installation</div>
+    <h2>Getting Started</h2>
+    <p>Astro requires <strong>Node.js v18.17.1+</strong>. The fastest way to bootstrap a project is the official
+        CLI wizard.</p>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-content">
+                <h4>Run the create wizard</h4>
+                <pre><code><span class="cmt"># npm</span>
+<span class="fn">npm</span> create astro@latest
+
+<span class="cmt"># pnpm</span>
+<span class="fn">pnpm</span> create astro@latest
+
+<span class="cmt"># yarn</span>
+<span class="fn">yarn</span> create astro</code></pre>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-content">
+                <h4>Answer the prompts</h4>
+                <p>The wizard asks for: project name, template (empty / blog / portfolio), TypeScript
+                    preference, and package manager. Houston (Astro's mascot) guides you through.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-content">
+                <h4>Start the dev server</h4>
+                <pre><code><span class="fn">cd</span> my-project
+<span class="fn">npm</span> run dev
+<span class="cmt"># → http://localhost:4321</span></code></pre>
+            </div>
+        </div>
+    </div>
+
+    <h3>Key CLI Commands</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Command</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>npm run dev</code></td>
+                <td>Start dev server with HMR</td>
+            </tr>
+            <tr>
+                <td><code>npm run build</code></td>
+                <td>Build production output → <code>dist/</code></td>
+            </tr>
+            <tr>
+                <td><code>npm run preview</code></td>
+                <td>Preview production build locally</td>
+            </tr>
+            <tr>
+                <td><code>npx astro add react</code></td>
+                <td>Auto-install integration</td>
+            </tr>
+            <tr>
+                <td><code>npx astro check</code></td>
+                <td>Type-check project</td>
+            </tr>
+            <tr>
+                <td><code>npx astro info</code></td>
+                <td>Debug environment info</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
