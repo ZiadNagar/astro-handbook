@@ -1,0 +1,1381 @@
+<!-- AUTO-GENERATED FILE. Edit src/pages/index.html and src/components/* then rebuild. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro Handbook — From Zero to Ship</title>
+    <meta name="description"
+        content="Astro Handbook: practical concepts, patterns, and deployment guidance for Astro projects.">
+    <meta name="author" content="Ziad Elnagar">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Astro Handbook — From Zero to Ship">
+    <meta property="og:description"
+        content="A complete Astro handbook with core concepts, examples, and deployment guidance.">
+    <meta property="og:url" content="https://ziadnagar.github.io/astro-handbook/">
+    <meta property="og:image" content="assets/astro-logo.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Astro Handbook — From Zero to Ship">
+    <meta name="twitter:description"
+        content="A complete Astro handbook with core concepts, examples, and deployment guidance.">
+    <meta name="twitter:image" content="assets/astro-logo.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false">
+        Contents
+    </button>
+    <button id="nav-backdrop" class="nav-backdrop" type="button" hidden aria-hidden="true" tabindex="-1"></button>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar">
+        <div class="sidebar-brand">
+            <div class="sidebar-brand-top">
+                <span class="brand-tag">// handbook</span>
+                <a class="github-link github-link-sidebar" href="https://github.com/ZiadNagar/astro-handbook"
+                    target="_blank" rel="noopener noreferrer" aria-label="Open astro-handbook repository on GitHub"
+                    title="Open GitHub repository">
+                    <svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                        <path fill="currentColor"
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                </a>
+            </div>
+            <div class="brand-title">Astro</div>
+            <div class="brand-sub">v5 · All Concepts · From Zero</div>
+        </div>
+        <nav id="nav" aria-label="Astro handbook sections">
+            <div class="nav-section">Getting Started</div>
+            <a href="#intro" class="active"><span class="num">01</span> What is Astro?</a>
+            <a href="#install"><span class="num">02</span> Installation</a>
+            <a href="#structure"><span class="num">03</span> Project Structure</a>
+
+            <div class="nav-section">Core</div>
+            <a href="#components"><span class="num">04</span> .astro Components</a>
+            <a href="#pages"><span class="num">05</span> Pages & Routing</a>
+            <a href="#layouts"><span class="num">06</span> Layouts</a>
+            <a href="#islands"><span class="num">07</span> Islands Architecture</a>
+
+            <div class="nav-section">Data</div>
+            <a href="#props"><span class="num">08</span> Props & Slots</a>
+            <a href="#fetch"><span class="num">09</span> Data Fetching</a>
+            <a href="#collections"><span class="num">10</span> Content Collections</a>
+
+            <div class="nav-section">Advanced</div>
+            <a href="#styling"><span class="num">11</span> Styling</a>
+            <a href="#assets"><span class="num">12</span> Assets & Images</a>
+            <a href="#integrations"><span class="num">13</span> Integrations</a>
+            <a href="#ssr"><span class="num">14</span> SSR & Adapters</a>
+            <a href="#middleware"><span class="num">15</span> Middleware</a>
+            <a href="#actions"><span class="num">16</span> Actions</a>
+            <a href="#viewtransitions"><span class="num">17</span> View Transitions</a>
+            <a href="#env"><span class="num">18</span> Env Variables</a>
+            <a href="#deploy"><span class="num">19</span> Deployment</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+
+        <!-- ─── 01 INTRO ─── -->
+        <section class="hero-section" id="intro">
+            <div class="section-label">01 · Introduction</div>
+            <h1>The Astro<br>Handbook</h1>
+            <p class="hero-lead">Everything you need to go from <em>zero to ship</em> with Astro
+                — the web framework built for content-heavy, fast websites. No fluff. Just concepts, code, and clarity.
+            </p>
+
+            <div class="pill-list">
+                <span class="pill active">Islands Architecture</span>
+                <span class="pill active">Zero JS by Default</span>
+                <span class="pill active">Content Collections</span>
+                <span class="pill active">SSG + SSR</span>
+                <span class="pill active">Framework Agnostic</span>
+                <span class="pill">React / Vue / Svelte</span>
+                <span class="pill">Tailwind Ready</span>
+            </div>
+
+            <h3>What is Astro?</h3>
+            <p>Astro is a <strong>web framework focused on content-driven websites</strong> — blogs, documentation,
+                marketing pages, e-commerce. Its core philosophy: ship <strong>less JavaScript</strong> to the browser.
+                HTML is rendered at build time, and interactive components (called <em>Islands</em>) are hydrated
+                on-demand.</p>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title"><span class="icon">⚡</span> Zero JS by Default</div>
+                    <p>Every page ships as static HTML. JS only loads when you opt in via client directives.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title"><span class="icon">🏝️</span> Islands</div>
+                    <p>Interactive UI components exist as isolated islands in an otherwise static sea.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title"><span class="icon">🔌</span> Bring Your UI</div>
+                    <p>Use React, Vue, Svelte, Solid, Preact — or just plain HTML. All in one project.</p>
+                </div>
+            </div>
+
+            <h3>Astro vs Other Frameworks</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Framework</th>
+                        <th>Default Output</th>
+                        <th>Best For</th>
+                        <th>Hydration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Astro</strong></td>
+                        <td>Static HTML</td>
+                        <td>Content sites</td>
+                        <td>Partial (Islands)</td>
+                    </tr>
+                    <tr>
+                        <td>Next.js</td>
+                        <td>SSR/SSG hybrid</td>
+                        <td>React apps</td>
+                        <td>Full page</td>
+                    </tr>
+                    <tr>
+                        <td>Nuxt</td>
+                        <td>SSR/SSG hybrid</td>
+                        <td>Vue apps</td>
+                        <td>Full page</td>
+                    </tr>
+                    <tr>
+                        <td>SvelteKit</td>
+                        <td>SSR + adapter</td>
+                        <td>Svelte apps</td>
+                        <td>Full page</td>
+                    </tr>
+                    <tr>
+                        <td>Remix</td>
+                        <td>SSR first</td>
+                        <td>Web apps</td>
+                        <td>Full page</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ─── 02 INSTALL ─── -->
+        <section class="section" id="install">
+            <div class="section-label">02 · Installation</div>
+            <h2>Getting Started</h2>
+            <p>Astro requires <strong>Node.js v18.17.1+</strong>. The fastest way to bootstrap a project is the official
+                CLI wizard.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Run the create wizard</h4>
+                        <pre><code><span class="cmt"># npm</span>
+<span class="fn">npm</span> create astro@latest
+
+<span class="cmt"># pnpm</span>
+<span class="fn">pnpm</span> create astro@latest
+
+<span class="cmt"># yarn</span>
+<span class="fn">yarn</span> create astro</code></pre>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Answer the prompts</h4>
+                        <p>The wizard asks for: project name, template (empty / blog / portfolio), TypeScript
+                            preference, and package manager. Houston (Astro's mascot) guides you through.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Start the dev server</h4>
+                        <pre><code><span class="fn">cd</span> my-project
+<span class="fn">npm</span> run dev
+<span class="cmt"># → http://localhost:4321</span></code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Key CLI Commands</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>npm run dev</code></td>
+                        <td>Start dev server with HMR</td>
+                    </tr>
+                    <tr>
+                        <td><code>npm run build</code></td>
+                        <td>Build production output → <code>dist/</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>npm run preview</code></td>
+                        <td>Preview production build locally</td>
+                    </tr>
+                    <tr>
+                        <td><code>npx astro add react</code></td>
+                        <td>Auto-install integration</td>
+                    </tr>
+                    <tr>
+                        <td><code>npx astro check</code></td>
+                        <td>Type-check project</td>
+                    </tr>
+                    <tr>
+                        <td><code>npx astro info</code></td>
+                        <td>Debug environment info</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ─── 03 STRUCTURE ─── -->
+        <section class="section" id="structure">
+            <div class="section-label">03 · Project Structure</div>
+            <h2>Project Structure</h2>
+            <p>Astro enforces a specific directory convention. Understanding it upfront saves confusion later.</p>
+
+            <figure class="diagram-card" aria-labelledby="structure-diagram-title">
+                <figcaption id="structure-diagram-title" class="diagram-title">Astro Project Topology</figcaption>
+                <div class="diagram-scroll">
+                    <pre class="mermaid">flowchart TB
+  project["my-astro-project/"]
+  src["src/"]
+  public["public/"]
+  config["astro.config.mjs"]
+  tscfg["tsconfig.json"]
+  pkg["package.json"]
+
+  pages["pages/"]
+  components["components/"]
+  layouts["layouts/"]
+  content["content/"]
+  styles["styles/"]
+  assets["assets/"]
+
+  project --> src
+  project --> public
+  project --> config
+  project --> tscfg
+  project --> pkg
+
+  src --> pages
+  src --> components
+  src --> layouts
+  src --> content
+  src --> styles
+  src --> assets
+
+  classDef root fill:#20222b,stroke:#ff5d01,color:#f0f0f2,stroke-width:1.5px;
+  classDef folder fill:#1a1c23,stroke:#4f39fa,color:#f0f0f2,stroke-width:1px;
+  classDef file fill:#13151a,stroke:#2a2d3a,color:#a8b2c1,stroke-width:1px;
+
+  class project root;
+  class src,pages,components,layouts,content,styles,assets,public folder;
+  class config,tscfg,pkg file;</pre>
+                </div>
+            </figure>
+
+            <div class="callout info">
+                <div class="callout-head">🔑 Key Rule</div>
+                Only files inside <code>src/pages/</code> become routable URLs. Everything else in <code>src/</code> is
+                imported but never exposed directly.
+            </div>
+
+            <h3>astro.config.mjs</h3>
+            <p>This is the heart of your Astro project. All integrations, output mode, and base path live here.</p>
+            <pre><code><span class="file-label">astro.config.mjs</span>
+<span class="kw">import</span> { <span class="var">defineConfig</span> } <span class="kw">from</span> <span class="str">'astro/config'</span>;
+<span class="kw">import</span> <span class="var">react</span> <span class="kw">from</span> <span class="str">'@astrojs/react'</span>;
+<span class="kw">import</span> <span class="var">tailwind</span> <span class="kw">from</span> <span class="str">'@astrojs/tailwind'</span>;
+
+<span class="kw">export default</span> <span class="fn">defineConfig</span>({
+  <span class="attr">site</span>: <span class="str">'https://mysite.com'</span>,   <span class="cmt">// needed for sitemaps, canonical URLs</span>
+  <span class="attr">base</span>: <span class="str">'/'</span>,
+  <span class="attr">output</span>: <span class="str">'static'</span>,             <span class="cmt">// 'static' | 'server' | 'hybrid'</span>
+  <span class="attr">integrations</span>: [<span class="fn">react</span>(), <span class="fn">tailwind</span>()],
+  <span class="attr">vite</span>: {
+    <span class="cmt">// pass-through Vite config here</span>
+  }
+});</code></pre>
+        </section>
+
+        <!-- ─── 04 COMPONENTS ─── -->
+        <section class="section" id="components">
+            <div class="section-label">04 · Components</div>
+            <h2>.astro Components</h2>
+            <p>The <code>.astro</code> file is Astro's own component format. It borrows JSX-like syntax but compiles to
+                pure HTML — no runtime framework required.</p>
+
+            <h3>Anatomy of a .astro File</h3>
+            <p>Every <code>.astro</code> file is split into two parts by a triple-dash fence (<code>---</code>):</p>
+
+            <pre><code><span class="file-label">src/components/Card.astro</span>
+<span class="cmt">---</span>
+<span class="cmt">// 1. COMPONENT SCRIPT (runs only at build/request time — server-side)</span>
+<span class="cmt">// This is where you import, fetch, define props, run logic</span>
+
+<span class="kw">const</span> { <span class="var">title</span>, <span class="var">description</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="kw">const</span> <span class="var">date</span> = <span class="kw">new</span> <span class="fn">Date</span>().<span class="fn">toISOString</span>();
+<span class="cmt">---</span>
+
+<span class="cmt">&lt;!-- 2. COMPONENT TEMPLATE (JSX-like HTML) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"card"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h2&gt;</span>{<span class="var">title</span>}<span class="tag">&lt;/h2&gt;</span>
+  <span class="tag">&lt;p&gt;</span>{<span class="var">description</span>}<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;small&gt;</span>{<span class="var">date</span>}<span class="tag">&lt;/small&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cmt">&lt;!-- 3. OPTIONAL: scoped styles --&gt;</span>
+<span class="tag">&lt;style&gt;</span>
+  <span class="fn">.card</span> { <span class="attr">border</span>: <span class="num">1px</span> solid <span class="num">#ccc</span>; <span class="attr">padding</span>: <span class="num">1rem</span>; }
+<span class="tag">&lt;/style&gt;</span></code></pre>
+
+            <div class="callout info">
+                <div class="callout-head">⚡ Important</div>
+                The component script runs <strong>at build time</strong> (or per-request in SSR). It's <em>never</em> in
+                the browser. You can use <code>await</code>, call databases, read the file system — anything Node.js can
+                do.
+            </div>
+
+            <h3>Expressions in Templates</h3>
+            <pre><code><span class="cmt">---</span>
+<span class="kw">const</span> <span class="var">items</span> = [<span class="str">'Apple'</span>, <span class="str">'Banana'</span>, <span class="str">'Cherry'</span>];
+<span class="kw">const</span> <span class="var">isVisible</span> = <span class="kw">true</span>;
+<span class="cmt">---</span>
+
+<span class="cmt">&lt;!-- Rendering a list --&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+  {<span class="var">items</span>.<span class="fn">map</span>((<span class="var">item</span>) =&gt; (
+    <span class="tag">&lt;li&gt;</span>{<span class="var">item</span>}<span class="tag">&lt;/li&gt;</span>
+  ))}
+<span class="tag">&lt;/ul&gt;</span>
+
+<span class="cmt">&lt;!-- Conditional rendering --&gt;</span>
+{<span class="var">isVisible</span> &amp;&amp; <span class="tag">&lt;p&gt;</span>I am visible<span class="tag">&lt;/p&gt;</span>}
+{<span class="var">isVisible</span> ? <span class="tag">&lt;p&gt;</span>Yes<span class="tag">&lt;/p&gt;</span> : <span class="tag">&lt;p&gt;</span>No<span class="tag">&lt;/p&gt;</span>}
+
+<span class="cmt">&lt;!-- Set raw HTML (use carefully!) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">set:html</span>={<span class="var">rawHtmlString</span>} <span class="tag">/&gt;</span></code></pre>
+
+            <h3>Importing & Using Components</h3>
+            <pre><code><span class="cmt">---</span>
+<span class="kw">import</span> <span class="type">Card</span> <span class="kw">from</span> <span class="str">'../components/Card.astro'</span>;
+<span class="kw">import</span> <span class="type">Button</span> <span class="kw">from</span> <span class="str">'../components/Button.astro'</span>;
+<span class="cmt">---</span>
+
+<span class="tag">&lt;Card</span> <span class="attr">title</span>=<span class="str">"Hello"</span> <span class="attr">description</span>=<span class="str">"World"</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;Button</span> <span class="attr">variant</span>=<span class="str">"primary"</span><span class="tag">&gt;</span>Click me<span class="tag">&lt;/Button&gt;</span></code></pre>
+        </section>
+
+        <!-- ─── 05 PAGES ─── -->
+        <section class="section" id="pages">
+            <div class="section-label">05 · Pages & Routing</div>
+            <h2>Pages & Routing</h2>
+            <p>Astro uses <strong>file-based routing</strong>. Any file in <code>src/pages/</code> with a supported
+                extension becomes a URL.</p>
+
+            <h3>Supported Page Formats</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>File</th>
+                        <th>URL</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>src/pages/index.astro</code></td>
+                        <td><code>/</code></td>
+                        <td>Home page</td>
+                    </tr>
+                    <tr>
+                        <td><code>src/pages/about.astro</code></td>
+                        <td><code>/about</code></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><code>src/pages/blog/index.astro</code></td>
+                        <td><code>/blog</code></td>
+                        <td>Folder index</td>
+                    </tr>
+                    <tr>
+                        <td><code>src/pages/blog/[slug].astro</code></td>
+                        <td><code>/blog/anything</code></td>
+                        <td>Dynamic route</td>
+                    </tr>
+                    <tr>
+                        <td><code>src/pages/[...all].astro</code></td>
+                        <td>Catch-all</td>
+                        <td>Rest params</td>
+                    </tr>
+                    <tr>
+                        <td><code>src/pages/rss.xml.js</code></td>
+                        <td><code>/rss.xml</code></td>
+                        <td>API / feed endpoint</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Dynamic Routes — getStaticPaths()</h3>
+            <p>For dynamic routes in static mode, you <strong>must</strong> export <code>getStaticPaths()</code> to tell
+                Astro which URLs to generate.</p>
+            <pre><code><span class="file-label">src/pages/blog/[slug].astro</span>
+<span class="cmt">---</span>
+<span class="kw">export async function</span> <span class="fn">getStaticPaths</span>() {
+  <span class="cmt">// return every possible [slug] value</span>
+  <span class="kw">return</span> [
+    { <span class="attr">params</span>: { <span class="attr">slug</span>: <span class="str">'first-post'</span> }, <span class="attr">props</span>: { <span class="attr">title</span>: <span class="str">'First Post'</span> } },
+    { <span class="attr">params</span>: { <span class="attr">slug</span>: <span class="str">'second-post'</span> }, <span class="attr">props</span>: { <span class="attr">title</span>: <span class="str">'Second Post'</span> } },
+  ];
+}
+
+<span class="kw">const</span> { <span class="var">slug</span> } = <span class="var">Astro</span>.<span class="prop">params</span>;
+<span class="kw">const</span> { <span class="var">title</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="cmt">---</span>
+
+<span class="tag">&lt;h1&gt;</span>{<span class="var">title</span>}<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;p&gt;</span>Slug: {<span class="var">slug</span>}<span class="tag">&lt;/p&gt;</span></code></pre>
+
+            <h3>API Endpoints</h3>
+            <p>Files ending in <code>.js</code> or <code>.ts</code> in <code>pages/</code> become API endpoints (JSON,
+                XML, RSS feeds).</p>
+            <pre><code><span class="file-label">src/pages/api/hello.json.ts</span>
+<span class="kw">import type</span> { <span class="type">APIRoute</span> } <span class="kw">from</span> <span class="str">'astro'</span>;
+
+<span class="kw">export const</span> <span class="var">GET</span>: <span class="type">APIRoute</span> = ({ <span class="var">params</span>, <span class="var">request</span> }) => {
+  <span class="kw">return new</span> <span class="fn">Response</span>(
+    <span class="var">JSON</span>.<span class="fn">stringify</span>({ <span class="attr">message</span>: <span class="str">'Hello, World!'</span> }),
+    { <span class="attr">headers</span>: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> } }
+  );
+};</code></pre>
+
+            <div class="callout tip">
+                <div class="callout-head">💡 Tip</div>
+                You can also export <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, <code>PATCH</code> from
+                the same endpoint file.
+            </div>
+        </section>
+
+        <!-- ─── 06 LAYOUTS ─── -->
+        <section class="section" id="layouts">
+            <div class="section-label">06 · Layouts</div>
+            <h2>Layouts</h2>
+            <p>Layouts are wrapper components that provide shared structure (header, footer, `&lt;head&gt;`) around page
+                content via <code>&lt;slot /&gt;</code>.</p>
+
+            <pre><code><span class="file-label">src/layouts/BaseLayout.astro</span>
+<span class="cmt">---</span>
+<span class="kw">interface</span> <span class="type">Props</span> {
+  <span class="var">title</span>: <span class="type">string</span>;
+  <span class="var">description</span>?: <span class="type">string</span>;
+}
+
+<span class="kw">const</span> { <span class="var">title</span>, <span class="var">description</span> = <span class="str">'My website'</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="cmt">---</span>
+
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="str">"en"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="str">"UTF-8"</span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="str">"viewport"</span> <span class="attr">content</span>=<span class="str">"width=device-width"</span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;title&gt;</span>{<span class="var">title</span>}<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="str">"description"</span> <span class="attr">content</span>={<span class="var">description</span>} <span class="tag">/&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;header&gt;</span><span class="tag">&lt;nav&gt;</span>...<span class="tag">&lt;/nav&gt;&lt;/header&gt;</span>
+
+  <span class="tag">&lt;main&gt;</span>
+    <span class="tag">&lt;slot /&gt;</span>   <span class="cmt">&lt;!-- page content renders here --&gt;</span>
+  <span class="tag">&lt;/main&gt;</span>
+
+  <span class="tag">&lt;footer&gt;</span>...<span class="tag">&lt;/footer&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+
+            <h3>Using a Layout in a Page</h3>
+            <pre><code><span class="file-label">src/pages/about.astro</span>
+<span class="cmt">---</span>
+<span class="kw">import</span> <span class="type">BaseLayout</span> <span class="kw">from</span> <span class="str">'../layouts/BaseLayout.astro'</span>;
+<span class="cmt">---</span>
+
+<span class="tag">&lt;BaseLayout</span> <span class="attr">title</span>=<span class="str">"About Me"</span> <span class="attr">description</span>=<span class="str">"Who I am"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>About Me<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>I build stuff on the web.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/BaseLayout&gt;</span></code></pre>
+
+            <h3>Named Slots</h3>
+            <p>Need multiple insertion points? Use named slots.</p>
+            <pre><code><span class="cmt">&lt;!-- In layout: --&gt;</span>
+<span class="tag">&lt;slot</span> <span class="attr">name</span>=<span class="str">"header"</span> <span class="tag">/&gt;</span>   <span class="cmt">&lt;!-- named slot --&gt;</span>
+<span class="tag">&lt;slot /&gt;</span>                 <span class="cmt">&lt;!-- default slot --&gt;</span>
+<span class="tag">&lt;slot</span> <span class="attr">name</span>=<span class="str">"footer"</span> <span class="tag">/&gt;</span>   <span class="cmt">&lt;!-- named slot --&gt;</span>
+
+<span class="cmt">&lt;!-- In page using the layout: --&gt;</span>
+<span class="tag">&lt;MyLayout&gt;</span>
+  <span class="tag">&lt;h1</span> <span class="attr">slot</span>=<span class="str">"header"</span><span class="tag">&gt;</span>Page Title<span class="tag">&lt;/h1&gt;</span>   <span class="cmt">&lt;!-- goes to header slot --&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Body content<span class="tag">&lt;/p&gt;</span>                 <span class="cmt">&lt;!-- goes to default slot --&gt;</span>
+<span class="tag">&lt;/MyLayout&gt;</span></code></pre>
+
+            <h3>Markdown Layouts</h3>
+            <p>Markdown/MDX files can declare their layout in frontmatter.</p>
+            <pre><code><span class="file-label">src/content/blog/my-post.md</span>
+<span class="cmt">---</span>
+<span class="attr">layout</span>: <span class="str">../../layouts/BlogPost.astro</span>
+<span class="attr">title</span>: <span class="str">My First Post</span>
+<span class="attr">pubDate</span>: <span class="str">2024-01-01</span>
+<span class="cmt">---</span>
+
+<span class="cmt"># Hello World</span>
+This is markdown content...</code></pre>
+        </section>
+
+        <!-- ─── 07 ISLANDS ─── -->
+        <section class="section" id="islands">
+            <div class="section-label">07 · Islands Architecture</div>
+            <h2>Islands Architecture</h2>
+            <p>This is Astro's <em>most important concept</em>. Most of your page ships as zero-JavaScript HTML. Only
+                the parts that need interactivity — <strong>Islands</strong> — load their framework and hydrate in the
+                browser.</p>
+
+            <figure class="diagram-card" aria-labelledby="islands-diagram-title">
+                <figcaption id="islands-diagram-title" class="diagram-title">Islands Rendering Model</figcaption>
+                <div class="diagram-scroll">
+                    <pre class="mermaid">flowchart LR
+subgraph page["Your Page (static HTML — no JS)"]
+header["Header<br/>Static HTML"]
+article["Article Content<br/>Static HTML"]
+chart["Interactive Chart<br/>🏝️ React Island"]
+search["Search Widget<br/>🏝️ Vue Island"]
+end
+
+header --- chart
+article --- search
+
+classDef static fill:#1a1c23,stroke:#2a2d3a,color:#a8b2c1,stroke-width:1px;
+classDef island fill:#20222b,stroke:#ff5d01,color:#f0f0f2,stroke-width:1.5px;
+classDef shell fill:#13151a,stroke:#4f39fa,color:#f0f0f2,stroke-width:1px;
+
+class page shell;
+class header,article static;
+class chart,search island;</pre>
+                </div>
+            </figure>
+
+            <h3>Client Directives — How to Hydrate</h3>
+            <p>Add a <code>client:*</code> directive to any component to make it an Island. Without it, a React/Vue
+                component renders as static HTML only.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Directive</th>
+                        <th>When JS Loads</th>
+                        <th>Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>client:load</code></td>
+                        <td>Immediately on page load</td>
+                        <td>Visible, critical UI</td>
+                    </tr>
+                    <tr>
+                        <td><code>client:idle</code></td>
+                        <td>When browser is idle</td>
+                        <td>Less critical, below fold</td>
+                    </tr>
+                    <tr>
+                        <td><code>client:visible</code></td>
+                        <td>When component enters viewport</td>
+                        <td>Lazy-loaded, far down page</td>
+                    </tr>
+                    <tr>
+                        <td><code>client:media="(query)"</code></td>
+                        <td>When media query matches</td>
+                        <td>Mobile-only nav, etc.</td>
+                    </tr>
+                    <tr>
+                        <td><code>client:only="react"`</code></td>
+                        <td>Browser only (no SSR)</td>
+                        <td>Components using browser APIs</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <pre><code><span class="cmt">---</span>
+<span class="kw">import</span> <span class="type">Search</span> <span class="kw">from</span> <span class="str">'./Search.jsx'</span>;      <span class="cmt">// React component</span>
+<span class="kw">import</span> <span class="type">Counter</span> <span class="kw">from</span> <span class="str">'./Counter.svelte'</span>;  <span class="cmt">// Svelte component</span>
+<span class="kw">import</span> <span class="type">Chart</span> <span class="kw">from</span> <span class="str">'./Chart.vue'</span>;        <span class="cmt">// Vue component</span>
+<span class="cmt">---</span>
+
+<span class="cmt">&lt;!-- No directive = static HTML, no JS --&gt;</span>
+<span class="tag">&lt;Search /&gt;</span>
+
+<span class="cmt">&lt;!-- Hydrate immediately --&gt;</span>
+<span class="tag">&lt;Search</span> <span class="attr">client:load</span> <span class="tag">/&gt;</span>
+
+<span class="cmt">&lt;!-- Wait for idle --&gt;</span>
+<span class="tag">&lt;Counter</span> <span class="attr">client:idle</span> <span class="tag">/&gt;</span>
+
+<span class="cmt">&lt;!-- Only when in viewport --&gt;</span>
+<span class="tag">&lt;Chart</span> <span class="attr">client:visible</span> <span class="tag">/&gt;</span>
+
+<span class="cmt">&lt;!-- Mobile only --&gt;</span>
+<span class="tag">&lt;MobileNav</span> <span class="attr">client:media</span>=<span class="str">"(max-width: 768px)"</span> <span class="tag">/&gt;</span></code></pre>
+
+            <div class="callout warn">
+                <div class="callout-head">⚠️ Islands are Isolated</div>
+                Islands don't share state with each other by default. If you need shared state across islands, use a
+                framework-agnostic store like <strong>nanostores</strong> (officially recommended by Astro).
+            </div>
+        </section>
+
+        <!-- ─── 08 PROPS ─── -->
+        <section class="section" id="props">
+            <div class="section-label">08 · Props & Slots</div>
+            <h2>Props & Slots</h2>
+
+            <h3>Defining & Typing Props</h3>
+            <pre><code><span class="cmt">---</span>
+<span class="kw">interface</span> <span class="type">Props</span> {
+  <span class="var">name</span>: <span class="type">string</span>;
+  <span class="var">age</span>?: <span class="type">number</span>;          <span class="cmt">// optional</span>
+  <span class="var">variant</span>: <span class="str">'primary'</span> | <span class="str">'secondary'</span>;
+}
+
+<span class="kw">const</span> { <span class="var">name</span>, <span class="var">age</span> = <span class="num">0</span>, <span class="var">variant</span> = <span class="str">'primary'</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="cmt">---</span>
+
+<span class="tag">&lt;div</span> <span class="attr">class</span>={<span class="str">`btn btn-</span>${<span class="var">variant</span>}<span class="str">`</span>}<span class="tag">&gt;</span>
+  {<span class="var">name</span>} - {<span class="var">age</span>}
+<span class="tag">&lt;/div&gt;</span></code></pre>
+
+            <h3>Astro.props vs Destructuring</h3>
+            <pre><code><span class="cmt">// Both are equivalent:</span>
+<span class="kw">const</span> { <span class="var">title</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;       <span class="cmt">// destructured</span>
+<span class="kw">const</span> <span class="var">title</span> = <span class="var">Astro</span>.<span class="prop">props</span>.<span class="prop">title</span>;   <span class="cmt">// direct access</span></code></pre>
+
+            <h3>Passing All HTML Attributes</h3>
+            <pre><code><span class="cmt">---</span>
+<span class="kw">const</span> { <span class="var">class</span>: <span class="var">className</span>, ...<span class="var">rest</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="cmt">---</span>
+<span class="tag">&lt;button</span> {<span class="op">...</span><span class="var">rest</span>} <span class="attr">class</span>={<span class="str">`base-btn </span>${<span class="var">className</span>}<span class="str">`</span>}<span class="tag">&gt;</span>
+  <span class="tag">&lt;slot /&gt;</span>
+<span class="tag">&lt;/button&gt;</span></code></pre>
+
+            <h3>Slot Fallback Content</h3>
+            <pre><code><span class="tag">&lt;slot&gt;</span>
+  <span class="cmt">&lt;!-- This renders if no slot content is provided --&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Default content here<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/slot&gt;</span></code></pre>
+        </section>
+
+        <!-- ─── 09 DATA FETCHING ─── -->
+        <section class="section" id="fetch">
+            <div class="section-label">09 · Data Fetching</div>
+            <h2>Data Fetching</h2>
+            <p>Since the component script runs on the server (or at build time), you can use <code>await</code> freely —
+                no <code>useEffect</code>, no loading states needed for initial data.</p>
+
+            <h3>Fetching External APIs</h3>
+            <pre><code><span class="file-label">src/pages/posts.astro</span>
+<span class="cmt">---</span>
+<span class="cmt">// Top-level await works inside .astro files!</span>
+<span class="kw">const</span> <span class="var">response</span> = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">'https://api.example.com/posts'</span>);
+<span class="kw">const</span> <span class="var">posts</span> = <span class="kw">await</span> <span class="var">response</span>.<span class="fn">json</span>();
+<span class="cmt">---</span>
+
+<span class="tag">&lt;ul&gt;</span>
+  {<span class="var">posts</span>.<span class="fn">map</span>((<span class="var">post</span>) =&gt; (
+    <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>={<span class="var">post</span>.<span class="prop">url</span>}<span class="tag">&gt;</span>{<span class="var">post</span>.<span class="prop">title</span>}<span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+  ))}
+<span class="tag">&lt;/ul&gt;</span></code></pre>
+
+            <h3>Reading Local Files</h3>
+            <pre><code><span class="cmt">---</span>
+<span class="kw">import</span> <span class="var">fs</span> <span class="kw">from</span> <span class="str">'node:fs/promises'</span>;
+
+<span class="kw">const</span> <span class="var">data</span> = <span class="kw">await</span> <span class="var">fs</span>.<span class="fn">readFile</span>(<span class="str">'./data.json'</span>, <span class="str">'utf-8'</span>);
+<span class="kw">const</span> <span class="var">json</span> = <span class="var">JSON</span>.<span class="fn">parse</span>(<span class="var">data</span>);
+<span class="cmt">---</span></code></pre>
+
+            <h3>Astro.glob() — Import Multiple Files</h3>
+            <p><code>Astro.glob()</code> lets you import multiple files at once with a glob pattern — great for markdown
+                posts, JSON files, etc.</p>
+            <pre><code><span class="cmt">---</span>
+<span class="cmt">// Import all markdown files from a folder</span>
+<span class="kw">const</span> <span class="var">posts</span> = <span class="kw">await</span> <span class="var">Astro</span>.<span class="fn">glob</span>(<span class="str">'../content/blog/*.md'</span>);
+
+<span class="cmt">// Sort by date descending</span>
+<span class="var">posts</span>.<span class="fn">sort</span>((<span class="var">a</span>, <span class="var">b</span>) =>
+  <span class="kw">new</span> <span class="fn">Date</span>(<span class="var">b</span>.<span class="prop">frontmatter</span>.<span class="prop">pubDate</span>) - <span class="kw">new</span> <span class="fn">Date</span>(<span class="var">a</span>.<span class="prop">frontmatter</span>.<span class="prop">pubDate</span>)
+);
+<span class="cmt">---</span>
+
+{<span class="var">posts</span>.<span class="fn">map</span>((<span class="var">post</span>) =&gt; (
+  <span class="tag">&lt;a</span> <span class="attr">href</span>={<span class="var">post</span>.<span class="prop">url</span>}<span class="tag">&gt;</span>{<span class="var">post</span>.<span class="prop">frontmatter</span>.<span class="prop">title</span>}<span class="tag">&lt;/a&gt;</span>
+))}</code></pre>
+
+            <div class="callout info">
+                <div class="callout-head">ℹ️ Modern Alternative</div>
+                <code>Astro.glob()</code> still works but <strong>Content Collections</strong> (next section) are the
+                preferred, type-safe approach for managing content in Astro v2+.
+            </div>
+        </section>
+
+        <!-- ─── 10 COLLECTIONS ─── -->
+        <section class="section" id="collections">
+            <div class="section-label">10 · Content Collections</div>
+            <h2>Content Collections <span class="badge v5">v2+</span></h2>
+            <p>Content Collections give you a <strong>type-safe, schema-validated</strong> way to manage local content —
+                markdown, MDX, YAML, JSON. Think of it as a local database for your content.</p>
+
+            <h3>1. Define Your Schema</h3>
+            <pre><code><span class="file-label">src/content/config.ts</span>
+<span class="kw">import</span> { <span class="var">z</span>, <span class="var">defineCollection</span> } <span class="kw">from</span> <span class="str">'astro:content'</span>;
+
+<span class="kw">const</span> <span class="var">blogCollection</span> = <span class="fn">defineCollection</span>({
+  <span class="attr">type</span>: <span class="str">'content'</span>,    <span class="cmt">// 'content' for md/mdx, 'data' for json/yaml</span>
+  <span class="attr">schema</span>: <span class="var">z</span>.<span class="fn">object</span>({
+    <span class="attr">title</span>: <span class="var">z</span>.<span class="fn">string</span>(),
+    <span class="attr">pubDate</span>: <span class="var">z</span>.<span class="fn">date</span>(),
+    <span class="attr">author</span>: <span class="var">z</span>.<span class="fn">string</span>().<span class="fn">default</span>(<span class="str">'Anonymous'</span>),
+    <span class="attr">tags</span>: <span class="var">z</span>.<span class="fn">array</span>(<span class="var">z</span>.<span class="fn">string</span>()).<span class="fn">default</span>([]),
+    <span class="attr">draft</span>: <span class="var">z</span>.<span class="fn">boolean</span>().<span class="fn">default</span>(<span class="kw">false</span>),
+    <span class="attr">cover</span>: <span class="var">z</span>.<span class="fn">string</span>().<span class="fn">optional</span>(),
+  }),
+});
+
+<span class="kw">export const</span> <span class="var">collections</span> = {
+  <span class="str">'blog'</span>: <span class="var">blogCollection</span>,
+};</code></pre>
+
+            <h3>2. Write Your Content</h3>
+            <pre><code><span class="file-label">src/content/blog/my-post.md</span>
+<span class="cmt">---</span>
+<span class="attr">title</span>: <span class="str">"My First Post"</span>
+<span class="attr">pubDate</span>: <span class="str">2024-01-15</span>
+<span class="attr">author</span>: <span class="str">"ZEZO"</span>
+<span class="attr">tags</span>: [<span class="str">"astro"</span>, <span class="str">"webdev"</span>]
+<span class="cmt">---</span>
+
+<span class="cmt"># Hello from Markdown</span>
+Content here...</code></pre>
+
+            <h3>3. Query the Collection</h3>
+            <pre><code><span class="file-label">src/pages/blog/index.astro</span>
+<span class="cmt">---</span>
+<span class="kw">import</span> { <span class="var">getCollection</span> } <span class="kw">from</span> <span class="str">'astro:content'</span>;
+
+<span class="cmt">// getCollection returns typed, validated entries</span>
+<span class="kw">const</span> <span class="var">allPosts</span> = <span class="kw">await</span> <span class="fn">getCollection</span>(<span class="str">'blog'</span>);
+
+<span class="cmt">// Filter out drafts</span>
+<span class="kw">const</span> <span class="var">published</span> = <span class="var">allPosts</span>.<span class="fn">filter</span>((<span class="var">post</span>) =&gt; !<span class="var">post</span>.<span class="prop">data</span>.<span class="prop">draft</span>);
+<span class="cmt">---</span>
+
+{<span class="var">published</span>.<span class="fn">map</span>((<span class="var">post</span>) =&gt; (
+  <span class="tag">&lt;article&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>={<span class="str">`/blog/</span>${<span class="var">post</span>.<span class="prop">slug</span>}<span class="str">`</span>}<span class="tag">&gt;</span>{<span class="var">post</span>.<span class="prop">data</span>.<span class="prop">title</span>}<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;/article&gt;</span>
+))}</code></pre>
+
+            <h3>4. Render a Single Entry</h3>
+            <pre><code><span class="file-label">src/pages/blog/[slug].astro</span>
+<span class="cmt">---</span>
+<span class="kw">import</span> { <span class="var">getCollection</span>, <span class="var">getEntry</span> } <span class="kw">from</span> <span class="str">'astro:content'</span>;
+
+<span class="kw">export async function</span> <span class="fn">getStaticPaths</span>() {
+  <span class="kw">const</span> <span class="var">posts</span> = <span class="kw">await</span> <span class="fn">getCollection</span>(<span class="str">'blog'</span>);
+  <span class="kw">return</span> <span class="var">posts</span>.<span class="fn">map</span>((<span class="var">post</span>) =&gt; ({
+    <span class="attr">params</span>: { <span class="attr">slug</span>: <span class="var">post</span>.<span class="prop">slug</span> },
+    <span class="attr">props</span>: { <span class="var">post</span> },
+  }));
+}
+
+<span class="kw">const</span> { <span class="var">post</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="kw">const</span> { <span class="type">Content</span> } = <span class="kw">await</span> <span class="var">post</span>.<span class="fn">render</span>();  <span class="cmt">// renders markdown to component</span>
+<span class="cmt">---</span>
+
+<span class="tag">&lt;h1&gt;</span>{<span class="var">post</span>.<span class="prop">data</span>.<span class="prop">title</span>}<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;Content /&gt;</span>   <span class="cmt">&lt;!-- renders markdown body --&gt;</span></code></pre>
+        </section>
+
+        <!-- ─── 11 STYLING ─── -->
+        <section class="section" id="styling">
+            <div class="section-label">11 · Styling</div>
+            <h2>Styling</h2>
+
+            <div class="tabs">
+                <div class="tab-nav" role="tablist" aria-label="Styling topics">
+                    <button id="tab-btn-scoped" class="tab-btn active" data-tab="scoped" role="tab" aria-selected="true"
+                        aria-controls="tab-scoped">Scoped CSS</button>
+                    <button id="tab-btn-global" class="tab-btn" data-tab="global" role="tab" aria-selected="false"
+                        aria-controls="tab-global" tabindex="-1">Global CSS</button>
+                    <button id="tab-btn-tailwind" class="tab-btn" data-tab="tailwind" role="tab" aria-selected="false"
+                        aria-controls="tab-tailwind" tabindex="-1">Tailwind</button>
+                    <button id="tab-btn-css-modules" class="tab-btn" data-tab="css-modules" role="tab"
+                        aria-selected="false" aria-controls="tab-css-modules" tabindex="-1">CSS Modules</button>
+                </div>
+
+                <div id="tab-scoped" class="tab-content active" role="tabpanel" aria-labelledby="tab-btn-scoped">
+                    <p class="tab-note">Scoped styles are the default in <code>.astro</code> files. They only
+                        apply to elements in that component.</p>
+                    <pre><code><span class="tag">&lt;h1&gt;</span>Only this h1 gets styled<span class="tag">&lt;/h1&gt;</span>
+
+<span class="tag">&lt;style&gt;</span>
+  <span class="cmt">/* Automatically scoped — won't leak */</span>
+  <span class="fn">h1</span> {
+    <span class="attr">color</span>: <span class="num">red</span>;
+    <span class="attr">font-size</span>: <span class="num">2rem</span>;
+  }
+<span class="tag">&lt;/style&gt;</span></code></pre>
+                </div>
+
+                <div id="tab-global" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-global" hidden>
+                    <p class="tab-note">Use <code>is:global</code> or a separate CSS file imported in your layout
+                        for truly global styles.</p>
+                    <pre><code><span class="cmt">&lt;!-- Option 1: is:global modifier --&gt;</span>
+<span class="tag">&lt;style</span> <span class="attr">is:global</span><span class="tag">&gt;</span>
+  <span class="fn">body</span> { <span class="attr">margin</span>: <span class="num">0</span>; <span class="attr">font-family</span>: sans-serif; }
+<span class="tag">&lt;/style&gt;</span>
+
+<span class="cmt">&lt;!-- Option 2: Import CSS file --&gt;</span>
+<span class="cmt">---</span>
+<span class="kw">import</span> <span class="str">'../styles/global.css'</span>;
+<span class="cmt">---</span></code></pre>
+                </div>
+
+                <div id="tab-tailwind" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-tailwind" hidden>
+                    <p class="tab-note">Install Tailwind with one command. Astro's integration auto-configures
+                        everything.</p>
+                    <pre><code><span class="fn">npx</span> astro add tailwind
+
+<span class="cmt"># Then just use classes in your templates:</span></code></pre>
+                    <pre><code><span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded"</span><span class="tag">&gt;</span>
+  Click Me
+<span class="tag">&lt;/button&gt;</span></code></pre>
+                </div>
+
+                <div id="tab-css-modules" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-css-modules"
+                    hidden>
+                    <p class="tab-note">CSS Modules work via Vite, producing locally-scoped class names.</p>
+                    <pre><code><span class="file-label">src/components/Button.module.css</span>
+<span class="fn">.button</span> { <span class="attr">background</span>: <span class="num">teal</span>; <span class="attr">padding</span>: <span class="num">8px 16px</span>; }</code></pre>
+                    <pre><code><span class="file-label">src/components/Button.astro</span>
+<span class="cmt">---</span>
+<span class="kw">import</span> <span class="var">styles</span> <span class="kw">from</span> <span class="str">'./Button.module.css'</span>;
+<span class="cmt">---</span>
+<span class="tag">&lt;button</span> <span class="attr">class</span>={<span class="var">styles</span>.<span class="prop">button</span>}<span class="tag">&gt;</span><span class="tag">&lt;slot /&gt;&lt;/button&gt;</span></code></pre>
+                </div>
+            </div>
+
+            <h3>Dynamic Class Names</h3>
+            <pre><code><span class="cmt">---</span>
+<span class="kw">const</span> { <span class="var">variant</span> = <span class="str">'default'</span> } = <span class="var">Astro</span>.<span class="prop">props</span>;
+<span class="cmt">---</span>
+
+<span class="cmt">&lt;!-- Using template literals --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>={<span class="str">`card card-</span>${<span class="var">variant</span>}<span class="str">`</span>}<span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+
+<span class="cmt">&lt;!-- Using class:list directive (Astro built-in) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class:list</span>={[<span class="str">'card'</span>, { <span class="str">'card-active'</span>: <span class="var">isActive</span> }, <span class="var">variant</span>]}<span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></code></pre>
+        </section>
+
+        <!-- ─── 12 ASSETS ─── -->
+        <section class="section" id="assets">
+            <div class="section-label">12 · Assets & Images</div>
+            <h2>Assets & Images</h2>
+            <p>Astro has a built-in image optimization pipeline. Images in <code>src/assets/</code> are processed;
+                images in <code>public/</code> are served as-is.</p>
+
+            <h3>The &lt;Image /&gt; Component</h3>
+            <pre><code><span class="cmt">---</span>
+<span class="kw">import</span> { <span class="type">Image</span> } <span class="kw">from</span> <span class="str">'astro:assets'</span>;
+<span class="kw">import</span> <span class="var">hero</span> <span class="kw">from</span> <span class="str">'../assets/hero.jpg'</span>;
+<span class="cmt">---</span>
+
+<span class="cmt">&lt;!-- Astro auto-optimizes: WebP, sizing, lazy loading --&gt;</span>
+<span class="tag">&lt;Image</span>
+  <span class="attr">src</span>={<span class="var">hero</span>}
+  <span class="attr">alt</span>=<span class="str">"Hero image"</span>
+  <span class="attr">width</span>={<span class="num">800</span>}
+  <span class="attr">height</span>={<span class="num">400</span>}
+  <span class="attr">format</span>=<span class="str">"webp"</span>
+  <span class="attr">quality</span>={<span class="num">80</span>}
+<span class="tag">/&gt;</span></code></pre>
+
+            <h3>The &lt;Picture /&gt; Component</h3>
+            <pre><code><span class="cmt">---</span>
+<span class="kw">import</span> { <span class="type">Picture</span> } <span class="kw">from</span> <span class="str">'astro:assets'</span>;
+<span class="kw">import</span> <span class="var">photo</span> <span class="kw">from</span> <span class="str">'../assets/photo.jpg'</span>;
+<span class="cmt">---</span>
+
+<span class="tag">&lt;Picture</span>
+  <span class="attr">src</span>={<span class="var">photo</span>}
+  <span class="attr">alt</span>=<span class="str">"Responsive photo"</span>
+  <span class="attr">formats</span>={[<span class="str">'avif'</span>, <span class="str">'webp'</span>]}
+  <span class="attr">widths</span>={[<span class="num">400</span>, <span class="num">800</span>, <span class="num">1200</span>]}
+<span class="tag">/&gt;</span></code></pre>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">src/assets/ (Processed)</div>
+                    <p>Images here are imported and processed by Astro. They get optimized, converted to WebP/AVIF, and
+                        get hashed filenames for caching.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">public/ (Pass-through)</div>
+                    <p>Files here are copied as-is. Use for favicons, <code>robots.txt</code>, OG images that need a
+                        fixed, predictable URL.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── 13 INTEGRATIONS ─── -->
+        <section class="section" id="integrations">
+            <div class="section-label">13 · Integrations</div>
+            <h2>Integrations</h2>
+            <p>Integrations extend Astro's capabilities — UI frameworks, styling, deployment adapters, analytics,
+                sitemaps, and more.</p>
+
+            <h3>Adding Integrations</h3>
+            <pre><code><span class="cmt"># Official integrations — auto-configures everything</span>
+<span class="fn">npx</span> astro add react       <span class="cmt"># React + React DOM</span>
+<span class="fn">npx</span> astro add vue         <span class="cmt"># Vue 3</span>
+<span class="fn">npx</span> astro add svelte      <span class="cmt"># Svelte</span>
+<span class="fn">npx</span> astro add solid-js    <span class="cmt"># Solid</span>
+<span class="fn">npx</span> astro add tailwind    <span class="cmt"># Tailwind CSS</span>
+<span class="fn">npx</span> astro add mdx         <span class="cmt"># MDX support</span>
+<span class="fn">npx</span> astro add sitemap     <span class="cmt"># Auto-generates sitemap.xml</span>
+<span class="fn">npx</span> astro add node        <span class="cmt"># Node.js adapter (SSR)</span>
+<span class="fn">npx</span> astro add vercel      <span class="cmt"># Vercel adapter (SSR)</span></code></pre>
+
+            <h3>Using Multiple UI Frameworks</h3>
+            <pre><code><span class="cmt">---</span>
+<span class="kw">import</span> <span class="type">ReactCounter</span> <span class="kw">from</span> <span class="str">'./ReactCounter.jsx'</span>;
+<span class="kw">import</span> <span class="type">VueSearch</span> <span class="kw">from</span> <span class="str">'./VueSearch.vue'</span>;
+<span class="kw">import</span> <span class="type">SvelteModal</span> <span class="kw">from</span> <span class="str">'./SvelteModal.svelte'</span>;
+<span class="cmt">---</span>
+
+<span class="cmt">&lt;!-- All work together on one page! --&gt;</span>
+<span class="tag">&lt;ReactCounter</span> <span class="attr">client:load</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;VueSearch</span> <span class="attr">client:idle</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;SvelteModal</span> <span class="attr">client:visible</span> <span class="tag">/&gt;</span></code></pre>
+
+            <h3>Official Integration Catalog</h3>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">⚛️ React</div>
+                    <p><code>@astrojs/react</code></p>
+                </div>
+                <div class="card">
+                    <div class="card-title">💚 Vue</div>
+                    <p><code>@astrojs/vue</code></p>
+                </div>
+                <div class="card">
+                    <div class="card-title">🔥 Svelte</div>
+                    <p><code>@astrojs/svelte</code></p>
+                </div>
+                <div class="card">
+                    <div class="card-title">💧 Solid</div>
+                    <p><code>@astrojs/solid-js</code></p>
+                </div>
+                <div class="card">
+                    <div class="card-title">🎨 Tailwind</div>
+                    <p><code>@astrojs/tailwind</code></p>
+                </div>
+                <div class="card">
+                    <div class="card-title">📝 MDX</div>
+                    <p><code>@astrojs/mdx</code></p>
+                </div>
+                <div class="card">
+                    <div class="card-title">🗺️ Sitemap</div>
+                    <p><code>@astrojs/sitemap</code></p>
+                </div>
+                <div class="card">
+                    <div class="card-title">🔍 Partytown</div>
+                    <p><code>@astrojs/partytown</code></p>
+                </div>
+                <div class="card">
+                    <div class="card-title">📦 Node</div>
+                    <p><code>@astrojs/node</code></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── 14 SSR ─── -->
+        <section class="section" id="ssr">
+            <div class="section-label">14 · SSR & Adapters</div>
+            <h2>SSR & Output Modes</h2>
+            <p>By default, Astro renders everything at build time (SSG). You can switch to server-side rendering
+                per-page or for the whole project.</p>
+
+            <h3>Three Output Modes</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mode</th>
+                        <th>Config</th>
+                        <th>Behavior</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>static</strong></td>
+                        <td><code>output: 'static'</code></td>
+                        <td>All pages pre-rendered at build time (default)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>server</strong></td>
+                        <td><code>output: 'server'</code></td>
+                        <td>All pages rendered on each request</td>
+                    </tr>
+                    <tr>
+                        <td><strong>hybrid</strong></td>
+                        <td><code>output: 'hybrid'</code></td>
+                        <td>Pages are static by default; opt pages into SSR</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Switching to SSR</h3>
+            <pre><code><span class="file-label">astro.config.mjs</span>
+<span class="kw">import</span> <span class="var">vercel</span> <span class="kw">from</span> <span class="str">'@astrojs/vercel/serverless'</span>;
+
+<span class="kw">export default</span> <span class="fn">defineConfig</span>({
+  <span class="attr">output</span>: <span class="str">'server'</span>,    <span class="cmt">// or 'hybrid'</span>
+  <span class="attr">adapter</span>: <span class="fn">vercel</span>(),  <span class="cmt">// deployment target adapter</span>
+});</code></pre>
+
+            <h3>Hybrid Mode — Opt-in SSR per Page</h3>
+            <pre><code><span class="file-label">src/pages/dashboard.astro</span>
+<span class="cmt">---</span>
+<span class="cmt">// In 'hybrid' mode, opt this page into SSR:</span>
+<span class="kw">export const</span> <span class="var">prerender</span> = <span class="kw">false</span>;  <span class="cmt">// SSR</span>
+<span class="cmt">// export const prerender = true;   // pre-render (default in hybrid)</span>
+
+<span class="cmt">// In 'server' mode, opt into static:</span>
+<span class="kw">export const</span> <span class="var">prerender</span> = <span class="kw">true</span>;
+<span class="cmt">---</span></code></pre>
+
+            <h3>Reading Request Data in SSR</h3>
+            <pre><code><span class="cmt">---</span>
+<span class="kw">export const</span> <span class="var">prerender</span> = <span class="kw">false</span>;
+
+<span class="kw">const</span> { <span class="var">request</span>, <span class="var">url</span>, <span class="var">cookies</span>, <span class="var">redirect</span> } = <span class="var">Astro</span>;
+
+<span class="cmt">// Read URL params</span>
+<span class="kw">const</span> <span class="var">id</span> = <span class="var">url</span>.<span class="fn">searchParams</span>.<span class="fn">get</span>(<span class="str">'id'</span>);
+
+<span class="cmt">// Read cookies</span>
+<span class="kw">const</span> <span class="var">token</span> = <span class="var">cookies</span>.<span class="fn">get</span>(<span class="str">'auth_token'</span>)?.<span class="prop">value</span>;
+
+<span class="cmt">// Redirect</span>
+<span class="kw">if</span> (!<span class="var">token</span>) <span class="kw">return</span> <span class="fn">redirect</span>(<span class="str">'/login'</span>);
+
+<span class="cmt">// Read POST body</span>
+<span class="kw">if</span> (<span class="var">request</span>.<span class="prop">method</span> === <span class="str">'POST'</span>) {
+  <span class="kw">const</span> <span class="var">body</span> = <span class="kw">await</span> <span class="var">request</span>.<span class="fn">json</span>();
+}
+<span class="cmt">---</span></code></pre>
+        </section>
+
+        <!-- ─── 15 MIDDLEWARE ─── -->
+        <section class="section" id="middleware">
+            <div class="section-label">15 · Middleware</div>
+            <h2>Middleware</h2>
+            <p>Middleware runs on every request <em>before</em> the page renders. Perfect for auth checks, setting
+                locals, logging, A/B testing.</p>
+
+            <pre><code><span class="file-label">src/middleware.ts</span>
+<span class="kw">import</span> { <span class="fn">defineMiddleware</span> } <span class="kw">from</span> <span class="str">'astro:middleware'</span>;
+
+<span class="kw">export const</span> <span class="var">onRequest</span> = <span class="fn">defineMiddleware</span>(
+  <span class="kw">async</span> ({ <span class="var">request</span>, <span class="var">locals</span>, <span class="var">cookies</span>, <span class="var">redirect</span> }, <span class="var">next</span>) => {
+
+  <span class="cmt">// Set data on locals — accessible in all pages/components</span>
+  <span class="var">locals</span>.<span class="prop">user</span> = <span class="kw">await</span> <span class="fn">getUserFromCookie</span>(<span class="var">cookies</span>);
+
+  <span class="cmt">// Guard protected routes</span>
+  <span class="kw">const</span> <span class="var">isProtected</span> = <span class="var">request</span>.<span class="prop">url</span>.<span class="fn">includes</span>(<span class="str">'/dashboard'</span>);
+  <span class="kw">if</span> (<span class="var">isProtected</span> && !<span class="var">locals</span>.<span class="prop">user</span>) {
+    <span class="kw">return</span> <span class="fn">redirect</span>(<span class="str">'/login'</span>);
+  }
+
+  <span class="cmt">// Continue to the page</span>
+  <span class="kw">return</span> <span class="fn">next</span>();
+});</code></pre>
+
+            <h3>Accessing Locals in Pages</h3>
+            <pre><code><span class="cmt">---</span>
+<span class="cmt">// Locals is typed — declare types in env.d.ts</span>
+<span class="kw">const</span> { <span class="var">user</span> } = <span class="var">Astro</span>.<span class="prop">locals</span>;
+<span class="cmt">---</span>
+<span class="tag">&lt;p&gt;</span>Welcome, {<span class="var">user</span>.<span class="prop">name</span>}!<span class="tag">&lt;/p&gt;</span></code></pre>
+
+            <h3>Type Your Locals</h3>
+            <pre><code><span class="file-label">src/env.d.ts</span>
+<span class="cmt">/// &lt;reference types="astro/client" /&gt;</span>
+
+<span class="kw">declare namespace</span> <span class="type">App</span> {
+  <span class="kw">interface</span> <span class="type">Locals</span> {
+    <span class="var">user</span>: { <span class="var">id</span>: <span class="type">string</span>; <span class="var">name</span>: <span class="type">string</span> } | <span class="kw">null</span>;
+  }
+}</code></pre>
+        </section>
+
+        <!-- ─── 16 ACTIONS ─── -->
+        <section class="section" id="actions">
+            <div class="section-label">16 · Actions</div>
+            <h2>Actions <span class="badge new">v4.15+</span></h2>
+            <p>Actions are type-safe server functions you can call from the client — like tRPC but built into Astro.
+                Great for form submissions, mutations, anything that needs a server round-trip.</p>
+
+            <h3>Defining Actions</h3>
+            <pre><code><span class="file-label">src/actions/index.ts</span>
+<span class="kw">import</span> { <span class="fn">defineAction</span>, <span class="var">z</span> } <span class="kw">from</span> <span class="str">'astro:actions'</span>;
+
+<span class="kw">export const</span> <span class="var">server</span> = {
+  <span class="attr">newsletter</span>: <span class="fn">defineAction</span>({
+    <span class="attr">accept</span>: <span class="str">'form'</span>,  <span class="cmt">// or 'json'</span>
+    <span class="attr">input</span>: <span class="var">z</span>.<span class="fn">object</span>({
+      <span class="attr">email</span>: <span class="var">z</span>.<span class="fn">string</span>().<span class="fn">email</span>(),
+    }),
+    <span class="attr">handler</span>: <span class="kw">async</span> ({ <span class="var">email</span> }) => {
+      <span class="kw">await</span> <span class="fn">subscribeToNewsletter</span>(<span class="var">email</span>);
+      <span class="kw">return</span> { <span class="attr">success</span>: <span class="kw">true</span> };
+    },
+  }),
+};</code></pre>
+
+            <h3>Calling Actions from Client</h3>
+            <pre><code><span class="cmt">// From a React component (island)</span>
+<span class="kw">import</span> { <span class="var">actions</span> } <span class="kw">from</span> <span class="str">'astro:actions'</span>;
+
+<span class="kw">const</span> <span class="fn">handleSubmit</span> = <span class="kw">async</span> (<span class="var">e</span>) => {
+  <span class="kw">const</span> { <span class="var">data</span>, <span class="var">error</span> } = <span class="kw">await</span> <span class="var">actions</span>.<span class="fn">newsletter</span>({ <span class="attr">email</span>: <span class="var">email</span> });
+  <span class="kw">if</span> (<span class="var">error</span>) <span class="kw">return</span> <span class="fn">setError</span>(<span class="var">error</span>.<span class="prop">message</span>);
+  <span class="fn">setSuccess</span>(<span class="kw">true</span>);
+};</code></pre>
+
+            <div class="callout tip">
+                <div class="callout-head">💡 Form Progressive Enhancement</div>
+                Actions support native HTML forms with zero JavaScript as a fallback. The form still works without JS,
+                and hydrates into a client-side experience when JS is available.
+            </div>
+        </section>
+
+        <!-- ─── 17 VIEW TRANSITIONS ─── -->
+        <section class="section" id="viewtransitions">
+            <div class="section-label">17 · View Transitions</div>
+            <h2>View Transitions</h2>
+            <p>Astro has first-class support for the <strong>View Transitions API</strong> — smooth, app-like page
+                transitions with minimal code.</p>
+
+            <h3>Enable Globally</h3>
+            <pre><code><span class="file-label">src/layouts/BaseLayout.astro</span>
+<span class="cmt">---</span>
+<span class="kw">import</span> { <span class="type">ViewTransitions</span> } <span class="kw">from</span> <span class="str">'astro:transitions'</span>;
+<span class="cmt">---</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;ViewTransitions /&gt;</span>   <span class="cmt">&lt;!-- That's all! --&gt;</span>
+<span class="tag">&lt;/head&gt;</span></code></pre>
+
+            <h3>Named Transitions</h3>
+            <pre><code><span class="cmt">&lt;!-- Page A --&gt;</span>
+<span class="tag">&lt;img</span>
+  <span class="attr">src</span>=<span class="str">"/hero.jpg"</span>
+  <span class="attr">transition:name</span>=<span class="str">"hero-image"</span>
+  <span class="attr">transition:animate</span>=<span class="str">"slide"</span>
+<span class="tag">/&gt;</span>
+
+<span class="cmt">&lt;!-- Page B — same name creates a morph transition --&gt;</span>
+<span class="tag">&lt;img</span>
+  <span class="attr">src</span>=<span class="str">"/hero.jpg"</span>
+  <span class="attr">transition:name</span>=<span class="str">"hero-image"</span>
+<span class="tag">/&gt;</span></code></pre>
+
+            <h3>Built-in Animations</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Directive</th>
+                        <th>Effect</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>transition:animate="fade"</code></td>
+                        <td>Fade in/out (default)</td>
+                    </tr>
+                    <tr>
+                        <td><code>transition:animate="slide"</code></td>
+                        <td>Slide left/right</td>
+                    </tr>
+                    <tr>
+                        <td><code>transition:animate="none"</code></td>
+                        <td>No animation</td>
+                    </tr>
+                    <tr>
+                        <td><code>transition:animate={myAnimation}</code></td>
+                        <td>Custom keyframe animation</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Persist Elements Across Pages</h3>
+            <pre><code><span class="cmt">&lt;!-- Media player stays alive during navigation --&gt;</span>
+<span class="tag">&lt;AudioPlayer</span> <span class="attr">transition:persist</span> <span class="tag">/&gt;</span>
+
+<span class="cmt">&lt;!-- Keep scroll position of sidebar --&gt;</span>
+<span class="tag">&lt;nav</span> <span class="attr">transition:persist</span>=<span class="str">"sidebar"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/nav&gt;</span></code></pre>
+        </section>
+
+        <!-- ─── 18 ENV ─── -->
+        <section class="section" id="env">
+            <div class="section-label">18 · Environment Variables</div>
+            <h2>Environment Variables</h2>
+
+            <h3>Naming Convention</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Prefix</th>
+                        <th>Accessible In</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>PUBLIC_</code></td>
+                        <td>Server + Client (browser)</td>
+                        <td><code>PUBLIC_API_URL</code></td>
+                    </tr>
+                    <tr>
+                        <td>(no prefix)</td>
+                        <td>Server only</td>
+                        <td><code>DATABASE_URL</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <pre><code><span class="file-label">.env</span>
+<span class="attr">DATABASE_URL</span>=<span class="str">postgres://localhost/mydb</span>     <span class="cmt"># server only</span>
+<span class="attr">PUBLIC_API_URL</span>=<span class="str">https://api.mysite.com</span>      <span class="cmt"># exposed to browser</span></code></pre>
+
+            <h3>Accessing Variables</h3>
+            <pre><code><span class="cmt">---</span>
+<span class="cmt">// Server-side (both work in .astro frontmatter)</span>
+<span class="kw">const</span> <span class="var">dbUrl</span> = <span class="kw">import</span>.<span class="prop">meta</span>.<span class="prop">env</span>.<span class="prop">DATABASE_URL</span>;
+<span class="kw">const</span> <span class="var">apiUrl</span> = <span class="kw">import</span>.<span class="prop">meta</span>.<span class="prop">env</span>.<span class="prop">PUBLIC_API_URL</span>;
+<span class="cmt">---</span>
+
+<span class="cmt">// Client-side JS (only PUBLIC_ is available)</span>
+<span class="kw">const</span> <span class="var">apiUrl</span> = <span class="kw">import</span>.<span class="prop">meta</span>.<span class="prop">env</span>.<span class="prop">PUBLIC_API_URL</span>;</code></pre>
+
+            <h3>Type-Safe Env (Astro v5) <span class="badge new">NEW</span></h3>
+            <pre><code><span class="file-label">astro.config.mjs</span>
+<span class="kw">import</span> { <span class="fn">defineConfig</span>, <span class="var">envField</span> } <span class="kw">from</span> <span class="str">'astro/config'</span>;
+
+<span class="kw">export default</span> <span class="fn">defineConfig</span>({
+  <span class="attr">env</span>: {
+    <span class="attr">schema</span>: {
+      <span class="attr">DATABASE_URL</span>: <span class="var">envField</span>.<span class="fn">string</span>({ <span class="attr">context</span>: <span class="str">'server'</span>, <span class="attr">access</span>: <span class="str">'secret'</span> }),
+      <span class="attr">PUBLIC_API_URL</span>: <span class="var">envField</span>.<span class="fn">string</span>({ <span class="attr">context</span>: <span class="str">'client'</span>, <span class="attr">access</span>: <span class="str">'public'</span> }),
+    }
+  }
+});</code></pre>
+        </section>
+
+        <!-- ─── 19 DEPLOY ─── -->
+        <section class="section" id="deploy">
+            <div class="section-label">19 · Deployment</div>
+            <h2>Deployment</h2>
+
+            <h3>Static (No Adapter Needed)</h3>
+            <p>If <code>output: 'static'</code>, just run <code>npm run build</code> and deploy the <code>dist/</code>
+                folder anywhere.</p>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">Vercel</div>
+                    <p>Zero-config. Connect repo, auto-detects Astro.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Netlify</div>
+                    <p>Drag-drop <code>dist/</code> or connect Git.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Cloudflare Pages</div>
+                    <p>Build command: <code>npm run build</code>, output: <code>dist</code>.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">GitHub Pages</div>
+                    <p>Use <code>@astrojs/github-pages</code> action.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">AWS S3 + CloudFront</div>
+                    <p>Upload <code>dist/</code> to S3, serve via CloudFront.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Any Static Host</div>
+                    <p>NGINX, Apache, self-hosted — <code>dist/</code> is pure HTML/CSS/JS.</p>
+                </div>
+            </div>
+
+            <h3>SSR Adapters</h3>
+            <pre><code><span class="cmt"># Install the adapter for your platform:</span>
+<span class="fn">npx</span> astro add vercel      <span class="cmt"># Vercel Functions</span>
+<span class="fn">npx</span> astro add netlify     <span class="cmt"># Netlify Functions</span>
+<span class="fn">npx</span> astro add cloudflare  <span class="cmt"># Cloudflare Workers</span>
+<span class="fn">npx</span> astro add node        <span class="cmt"># Node.js (self-hosted)</span>
+<span class="fn">npx</span> astro add deno        <span class="cmt"># Deno Deploy</span></code></pre>
+
+            <h3>Docker (Node Adapter)</h3>
+            <pre><code><span class="file-label">Dockerfile</span>
+<span class="kw">FROM</span> node:<span class="num">20</span>-alpine
+<span class="kw">WORKDIR</span> /app
+<span class="kw">COPY</span> package*.json ./
+<span class="kw">RUN</span> npm ci
+<span class="kw">COPY</span> . .
+<span class="kw">RUN</span> npm run build
+<span class="kw">EXPOSE</span> <span class="num">4321</span>
+<span class="kw">CMD</span> [<span class="str">"node"</span>, <span class="str">"./dist/server/entry.mjs"</span>]</code></pre>
+
+            <div class="handbook-footer">
+                <span>Astro Handbook · Created by Ziad Elnagar</span>
+                <a class="github-link github-link-footer" href="https://github.com/ZiadNagar/astro-handbook"
+                    target="_blank" rel="noopener noreferrer" aria-label="Open astro-handbook repository on GitHub">
+                    <svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                        <path fill="currentColor"
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.7 7.7 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                    <span>ZiadNagar/astro-handbook</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="assets/js/main.js" defer></script>
+</body>
+
+</html>
