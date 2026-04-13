@@ -4,6 +4,8 @@ A modular, single-page Astro learning handbook built with plain HTML, CSS, and J
 
 The project uses a source composition workflow under `src/` and generates a production-ready `index.html` at the project root.
 
+---
+
 ## Highlights
 
 - Componentized source structure (layout + section partials)
@@ -11,6 +13,8 @@ The project uses a source composition workflow under `src/` and generates a prod
 - Astro-themed UI with responsive behavior and accessibility improvements
 - Mermaid diagram support in handbook sections
 - Deployment-friendly static output
+
+---
 
 ## Project Structure
 
@@ -31,6 +35,8 @@ astro-tuts/
 └── README.md
 ```
 
+---
+
 ## How It Works
 
 - `src/pages/index.html` is the composition entry file.
@@ -39,9 +45,13 @@ astro-tuts/
 
 Full architecture notes: see `docs/architecture.md`.
 
+---
+
 ## Requirements
 
 - Node.js (LTS recommended)
+
+---
 
 ## Scripts
 
@@ -51,6 +61,8 @@ npm run build:html
 ```
 
 Both commands generate `index.html` from the source files in `src/`.
+
+---
 
 ## Local Workflow
 
@@ -65,14 +77,14 @@ Both commands generate `index.html` from the source files in `src/`.
    ```
 3. Open `index.html` in a browser.
 
+---
+
 ## Important Note
 
 `index.html` is generated. Do not manually edit root `index.html` for long-term changes.
 Make edits in `src/` and rebuild.
 
-## Deployment
-
-Because the output is static HTML/CSS/JS, you can deploy `index.html` (and referenced assets) to any static host.
+---
 
 ## Author
 
