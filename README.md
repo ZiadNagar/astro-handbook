@@ -16,21 +16,19 @@ The project uses a source composition workflow under `src/` and generates a prod
 
 ```text
 astro-tuts/
-|-- assets/
-|   |-- css/main.css
-|   `-- js/main.js
-|-- docs/
-|   `-- architecture.md
-|-- scripts/
-|   `-- build-html.mjs
-|-- src/
-|   |-- components/
-|   |   |-- layout/
-|   |   `-- sections/
-|   `-- pages/index.html
-|-- index.html           # generated output
-|-- package.json
-`-- README.md
+├── assets/
+|   └── css/main.css
+|   └── js/main.js
+├── scripts/
+|   └── build-html.mjs
+├── src/
+|   ├── components/
+|   |   ├── layout/
+|   |   └── sections/
+|   └── pages/index.html
+├── index.html
+├── package.json
+└── README.md
 ```
 
 ## How It Works
